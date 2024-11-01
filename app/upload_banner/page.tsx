@@ -1,6 +1,6 @@
-import DoxleIconPlain from "@/Components/DoxleIcons";
 import React from "react";
-import UploadBannerBgLine from "./_Components/UploadBannerBgLine";
+import UploadBannerBgLine from "./UploadBannerBgLine";
+import DoxleIconPlain from "@/_Components/DoxleIcons";
 
 type Props = {};
 
