@@ -1,4 +1,4 @@
-import { TSvgWrapper } from "../app/Models/UtilitiModels";
+import { TSvgWrapper } from "../Models/UtilitiModels";
 
 // limitations under the License.
 export default function DoxleIconPlain({

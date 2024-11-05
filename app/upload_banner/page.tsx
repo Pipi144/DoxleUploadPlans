@@ -1,12 +1,13 @@
 import React from "react";
 import UploadBannerBgLine from "./UploadBannerBgLine";
-import DoxleIconPlain from "@/_Components/DoxleIcons";
+import DoxleIconPlain from "@/components/DoxleIcons";
+import UploadBtn from "./_components/UploadBtn";
 
 type Props = {};
 
 export default async function UploadBanner(props: Props) {
   return (
-    <div className="flex w-full h-full justify-between transition-all duration-200 ease-linear overflow-hidden flex-col-reverse landscape:flex-row tablet:flex-row  ">
+    <div className="flex w-full h-full justify-between transition-all duration-200 ease-linear overflow-hidden flex-col-reverse landscape:flex-row tablet:flex-row ">
       <div className="flex flex-col justify-end w-full tablet:w-1/2 laptop:w-2/5 landscape:w-1/2 h-fit tablet:h-full landscape:h-full pb-[20px] tablet:pb-[50px] landscape:pb-[20px] pl-[20px] tablet:pl-[50px] landscape:pl-[50px] transition-all duration-200 ease-linear">
         <DoxleIconPlain className="w-[50px] tablet:w-[60px] laptop:w-[80px] transition-all duration-200 ease-linear" />
         <div className="max-w-[420px] text-black text-[16px] my-[10px] mr-[50px] font-lexend font-medium no-underline normal-case">
@@ -17,6 +18,8 @@ export default async function UploadBanner(props: Props) {
             (Pdf format only - max size 50MB)
           </span>
         </div>
+
+        <UploadBtn />
       </div>
 
       <div className="flex relative max-w-[768px] w-full tablet:w-1/2 laptop:w-3/5 landscape:w-2/5 tablet:h-[95%] laptop:h-full landscape:h-full flex-1 tablet:flex-none ml-[20%] mobileMd:ml-[15%] tablet:mb-0 mb-[20px] mobileMd:mb-[40px] tablet:ml-0 transition-all duration-200 ease-linear">

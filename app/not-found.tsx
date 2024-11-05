@@ -1,4 +1,4 @@
-import NavHomeBtn from "@/_Components/DesignPatterns/NavHomeBtn";
+import NavHomeBtn from "@/components/DesignPatterns/NavHomeBtn";
 import React from "react";
 
 const NotFound = () => {
