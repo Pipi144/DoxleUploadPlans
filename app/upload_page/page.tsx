@@ -8,10 +8,9 @@ import { IoAddOutline } from "react-icons/io5";
 import UploadProvider from "./_components/hooks/UploadProvider";
 import UploadItem from "./_components/UploadItem";
 
-type Props = {};
 
 const AnimatedButton = motion.create(Button);
-export default function UploadPage(props: Props) {
+export default function UploadPage() {
   const {
     filesOnDragged,
     handleFileDragEnter,
@@ -28,7 +27,6 @@ export default function UploadPage(props: Props) {
     handleProcessFiles,
     processableFiles,
     projectFiles,
-    isGettingProjectDetails,
     floatingBtnVariants,
     hideAddBtn,
     fileContainerRef,

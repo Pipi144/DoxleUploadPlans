@@ -17,15 +17,16 @@ export interface ProjectFile {
 }
 
 interface Props {
+  projectId?: string;
   enablePolling?: boolean;
   onSuccessCb?: (files: ProjectFile[]) => void;
 }
 
 const useRetrieveProjectFiles = ({
+  projectId,
   onSuccessCb,
   enablePolling = false,
 }: Props) => {
-  const projectId: string | null = localStorage.getItem("projectId");
   // const showNotification = useDoxleNotificationStore(
   //   useShallow((state) => state.showNotification)
   // );
@@ -38,7 +39,7 @@ const useRetrieveProjectFiles = ({
         );
         if (onSuccessCb) onSuccessCb(resp.data);
         return resp;
-      } catch (error) {}
+      } catch {}
     },
     enabled: Boolean(projectId),
     retry: 1,
@@ -113,16 +114,15 @@ export const useSetProjectFileQueryData = () => {
   };
 };
 interface IRetrieveProjectDetailsProps {
-  project?: string;
+  projectId?: string;
   onSuccessCb?: (files: IPlanProjectDetails) => void;
   enablePolling?: boolean;
 }
 export const useRetrieveProjectDetails = ({
-  project,
+  projectId,
   onSuccessCb,
   enablePolling,
 }: IRetrieveProjectDetailsProps) => {
-  const projectId: string | null = project ?? localStorage.getItem("projectId");
   // const showNotification = useDoxleNotificationStore(
   //   useShallow((state) => state.showNotification)
   // );
@@ -137,7 +137,7 @@ export const useRetrieveProjectDetails = ({
         if (onSuccessCb) onSuccessCb(resp.data);
 
         return resp;
-      } catch (error) {}
+      } catch {}
     },
     enabled: Boolean(projectId),
     retry: 1,

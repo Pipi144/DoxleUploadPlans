@@ -8,10 +8,10 @@ export const getProjectMutationKey = (
   action: "add" | "create-budget" | "process"
 ) => [`${action}-project`];
 
-interface IProcessFileProps {
-  projectId: string;
-  fileId: string;
-}
+// interface IProcessFileProps {
+//   projectId: string;
+//   fileId: string;
+// }
 interface UseMutateProjectProps {
   onSuccessCb?: (project: IPlanProjectDetails) => void;
   onErrorCb?: (error?: unknown) => void;
@@ -20,7 +20,7 @@ interface UseMutateProjectProps {
 const useMutateProject = ({
   onSuccessCb,
   onErrorCb,
-  onProcessSuccessCb,
+  // onProcessSuccessCb,
 }: UseMutateProjectProps) => {
   const createProjectQuery = useMutation<
     AxiosResponse<IPlanProjectDetails, AxiosBackendErrorReturn>,
@@ -36,7 +36,7 @@ const useMutateProject = ({
 
     retry: 1,
     onSuccess: (result) => {
-      localStorage.setItem("projectId", result.data.projectId);
+      window.localStorage.setItem("projectId", result.data.projectId);
       if (onSuccessCb) onSuccessCb(result.data);
     },
     onError: (error) => {

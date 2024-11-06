@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import { useShallow } from "zustand/react/shallow";
-import { DropEvent, FileRejection, useDropzone } from "react-dropzone";
+import { FileRejection, useDropzone } from "react-dropzone";
 import { produce } from "immer";
 import { v4 as uuid } from "uuid";
 import { Variants } from "framer-motion";
@@ -44,18 +44,18 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const [uploadStage, setUploadStage] = useState<TUploadStage>("FileUpload");
   const [disableNavCompleteScreen, setDisableNavCompleteScreen] =
     useState(false);
-  const storageProjectId = localStorage.getItem("projectId");
-  if (urlProjectId) localStorage.setItem("projectId", urlProjectId);
   const [projectId, setProjectId] = useState<string | undefined>(
-    urlProjectId ?? storageProjectId ?? undefined
+    urlProjectId ?? undefined
   );
   const fileContainerRef = React.useRef<HTMLDivElement>(null);
   let scrollTimer: ReturnType<typeof setTimeout>;
-  let enablePolling = allUploadedFiles.length !== 0;
+  const enablePolling = allUploadedFiles.length !== 0;
   const projectFileQuery = useRetrieveProjectFiles({
+    projectId,
     enablePolling: enablePolling,
   });
   const projectDetailQuery = useRetrieveProjectDetails({
+    projectId,
     enablePolling: uploadStage === "DetailEntry",
     onSuccessCb: (data) => {
       if (data.processClicked) {
@@ -94,7 +94,6 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     <T extends File>(
       acceptedFiles: T[],
       fileRejections: FileRejection[],
-      event: DropEvent
     ) => {
       if (acceptedFiles.length > 0) {
         setAllUploadedFiles(
@@ -163,7 +162,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const uploadFilesInFolder = useCallback(() => {
     if (pendingFolderUpload) {
       const allFiles: ILocalUploadedFile[] = [];
-      pendingFolderUpload.forEach((folder, idx) => {
+      pendingFolderUpload.forEach((folder) => {
         if (!folder.isNestedFolder) {
           const files: ILocalUploadedFile[] = folder.files.map((file) => ({
             fileItem: file,
@@ -256,13 +255,19 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   );
 
   useEffect(() => {
-    if (!projectId && !createProjectQuery.isPending)
-      createProjectQuery.mutate({
-        projectId: uuid(),
-        projectName: "New Project",
-        createStorey: false,
-      });
+    const storageProjectId = window.localStorage.getItem("projectId");
+    if (urlProjectId) window.localStorage.setItem("projectId", urlProjectId);
+    else if (!projectId) {
+      if (storageProjectId) setProjectId(storageProjectId)
+      else if (!createProjectQuery.isPending)
+        createProjectQuery.mutate({
+          projectId: uuid(),
+          projectName: "New Project",
+          createStorey: false,
+        });
+    }
   }, []);
+
   useEffect(() => {
     const handleScrollStart = () => {
       if (!hideAddBtn) {

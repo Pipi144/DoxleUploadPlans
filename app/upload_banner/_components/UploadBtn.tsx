@@ -25,4 +25,6 @@ const UploadBtn = forwardRef<HTMLButtonElement, UploadBtnProps>(
   }
 );
 
+UploadBtn.displayName = 'UploadBtn'
+
 export default UploadBtn;

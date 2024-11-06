@@ -11,7 +11,7 @@ type TSuccessDropResult = {
   isNestedFolder?: boolean;
 };
 const useProcessFileDrop = () => {
-  const isTypeProcessError = (error: any): error is TProcessError =>
+  const isTypeProcessError = (error: unknown): error is TProcessError =>
     error === "Nested folder not supported" || error === "Processing Error";
 
   const checkFileTypeValid = (
@@ -32,7 +32,7 @@ const useProcessFileDrop = () => {
   ): Promise<File | undefined> => {
     try {
       return new Promise((resolve, reject) => fileEntry.file(resolve, reject));
-    } catch (err) {
+    } catch {
       return;
     }
   };

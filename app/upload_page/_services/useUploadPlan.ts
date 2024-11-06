@@ -8,12 +8,12 @@ import { DrawAPI, planBaseAddress } from "@/DoxleAPI";
 interface IMutatePlanQueryProps {
   onCancelUpload?: () => void;
   onSuccessUpload?: (project: IProjectDetailWithFiles) => void;
-  onErrorUpload?: (error?: any) => void;
+  onErrorUpload?: (error?: AxiosBackendErrorReturn) => void;
   onCompletePreparing?: () => void;
 }
 interface IGetAWSUrlProps {
   onSuccessGetUrl?: (url: string) => void;
-  onErrorGetUrl?: (error?: any) => void;
+  onErrorGetUrl?: (error?: AxiosBackendErrorReturn) => void;
   onGetPresignedUrl?: () => void;
 }
 
@@ -95,7 +95,7 @@ export const useMutateProjectPlan = ({
       );
     },
 
-    onSuccess: (response, variables) => {
+    onSuccess: (response) => {
       if (onSuccessUpload) onSuccessUpload(response.data);
     },
     onError: (error) => {
@@ -107,7 +107,8 @@ export const useMutateProjectPlan = ({
     abortControllerRef.current?.abort();
     upload.reset();
 
-    setProgress(0), setEstimatedTime(0);
+    setProgress(0);
+    setEstimatedTime(0);
   }, [upload.reset, setProgress, setEstimatedTime, onCancelUpload]);
   return {
     ...upload,
@@ -146,7 +147,7 @@ export const useGetAWSPresignedUrl = ({
       if (onGetPresignedUrl) onGetPresignedUrl();
     },
 
-    onSuccess: (response, variables) => {
+    onSuccess: (response) => {
       if (onSuccessGetUrl) onSuccessGetUrl(response.data.presignedUrl);
     },
     onError: (error) => {
@@ -223,7 +224,7 @@ export const useAWSMutatePlan = ({
       abortControllerRef.current = new AbortController();
       if (onStartingUpload) onStartingUpload();
     },
-    onSuccess: (response, variables) => {
+    onSuccess: (response) => {
       if (onSuccessUpload) onSuccessUpload(response.data);
     },
     onError: (error) => {
@@ -234,7 +235,8 @@ export const useAWSMutatePlan = ({
     abortControllerRef.current?.abort();
     upload.reset();
 
-    setProgress(0), setEstimatedTime(0);
+    setProgress(0);
+    setEstimatedTime(0);
     if (onCancelUpload) onCancelUpload();
   }, [upload.reset, setProgress, setEstimatedTime, onCancelUpload]);
 
@@ -248,8 +250,8 @@ export const useAWSMutatePlan = ({
       return axios.delete(`${planBaseAddress}/file/${fileId}`);
     },
     onMutate: () => {},
-    onSuccess: (response, variables) => {},
-    onError: (error) => {},
+    onSuccess: () => {},
+    onError: () => {},
   });
 
   const deleteAllFile = useMutation<
@@ -265,7 +267,7 @@ export const useAWSMutatePlan = ({
     onSuccess: (response, variables) => {
       if (onDeleteAllFileSuccess) onDeleteAllFileSuccess(variables);
     },
-    onError: (error) => {},
+    onError: () => {},
   });
   return {
     patch: {
@@ -314,7 +316,7 @@ export const useAWSUpdatePlanDetails = ({
     },
     onMutate: () => {},
 
-    onSuccess: (response, variables) => {
+    onSuccess: (response) => {
       if (onSuccessUpdate) onSuccessUpdate(response.data);
     },
     onError: (error) => {
@@ -353,10 +355,10 @@ export const useVerifyEmailProject = ({
       );
     },
 
-    onSuccess: (response, variables) => {
+    onSuccess: (response) => {
       if (onSuccessVerify) onSuccessVerify(response.data);
     },
-    onError: (error) => {},
+    onError: () => {},
   });
   const resend = useMutation<AxiosResponse, AxiosBackendErrorReturn, string>({
     mutationKey: getPlanMutateKey("resend-verification"),
@@ -364,10 +366,10 @@ export const useVerifyEmailProject = ({
       return axios.get(`${planBaseAddress}/${projectId}/resend-verification`);
     },
 
-    onSuccess: (response, variables) => {
+    onSuccess: (response) => {
       if (onSuccessVerify) onSuccessVerify(response.data);
     },
-    onError: (error) => {},
+    onError: () => {},
   });
   return {
     sendEmail: {

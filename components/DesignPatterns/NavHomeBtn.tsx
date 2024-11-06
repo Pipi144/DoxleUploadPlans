@@ -1,7 +1,5 @@
 import React, { HTMLAttributes, PropsWithChildren } from "react";
 
-type Props = {};
-
 const NavHomeBtn = ({
   children,
   ...props

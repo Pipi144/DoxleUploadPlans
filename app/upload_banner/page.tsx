@@ -3,9 +3,8 @@ import UploadBannerBgLine from "./UploadBannerBgLine";
 import DoxleIconPlain from "@/components/DoxleIcons";
 import UploadBtn from "./_components/UploadBtn";
 
-type Props = {};
 
-export default async function UploadBanner(props: Props) {
+export default async function UploadBanner() {
   return (
     <div className="flex w-full h-full justify-between transition-all duration-200 ease-linear overflow-hidden flex-col-reverse landscape:flex-row tablet:flex-row ">
       <div className="flex flex-col justify-end w-full tablet:w-1/2 laptop:w-2/5 landscape:w-1/2 h-fit tablet:h-full landscape:h-full pb-[20px] tablet:pb-[50px] landscape:pb-[20px] pl-[20px] tablet:pl-[50px] landscape:pl-[50px] transition-all duration-200 ease-linear">

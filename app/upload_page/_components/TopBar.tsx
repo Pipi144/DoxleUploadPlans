@@ -5,9 +5,7 @@ import { openDoxleHelpEmail } from "@/Utilities/FunctionUtility";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-type Props = {};
-
-const TopBar = (props: Props) => {
+const TopBar = () => {
   const router = useRouter();
   return (
     <div className="max-w-[1280px] w-[calc(100%-40px)] flex fixed top-[20px] justify-between mx-[20px]">

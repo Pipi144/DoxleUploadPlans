@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync": "aws s3 sync ./out s3://doxle.com",
+    "clearcache": "aws cloudfront create-invalidation --distribution-id E3GN11OLUCHFB6 --paths \"/*\"",
+    "deploy": "next build && npm run sync && npm run clearcache"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.2",

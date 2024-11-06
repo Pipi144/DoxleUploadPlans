@@ -14,7 +14,6 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogOverlay,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useDoxleErrorWarningStore } from "@/GeneralStores/useDoxleErrorWarningStore";
