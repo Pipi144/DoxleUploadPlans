@@ -13,6 +13,7 @@
 
 import { HTMLMotionProps } from "framer-motion";
 import { HTMLAttributes, ReactHTML } from "react";
+import { FileRejection } from "react-dropzone";
 
 // limitations under the License.
 export type TSvgAnimatedWrapper<T extends keyof ReactHTML> = Omit<
@@ -28,3 +29,34 @@ export type TSvgWrapper<T extends HTMLElement> = Omit<
 > & {
   containerStyle?: React.CSSProperties;
 };
+export interface IFolderUploadDetails {
+  folderName: string;
+  files: File[];
+  filesError?: FileRejection[];
+  isNestedFolder?: boolean;
+}
+export type TAllowedFileType = {
+  mimePrefix: string;
+  extensions: string[];
+};
+export const Doxle_Allowed_Types: TAllowedFileType[] = [
+  {
+    mimePrefix: "image/",
+    extensions: [".png", ".jpg", ".jpeg", ".bmp", ".webp"],
+  },
+  {
+    mimePrefix: "application/",
+    extensions: [
+      ".pdf",
+      ".xls",
+      ".xlsx",
+      ".doc",
+      ".docx",
+      ".ppt",
+      ".pptx",
+      ".zip",
+    ],
+  },
+  { mimePrefix: "text/", extensions: [".txt", ".csv", ".rtf"] },
+  { mimePrefix: "video/", extensions: [".mp4", ".mpeg", ".mov"] },
+];

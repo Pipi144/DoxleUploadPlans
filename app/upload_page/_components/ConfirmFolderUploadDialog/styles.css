@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .label-text {
+    @apply font-normal text-[14px] font-lexend text-white w-[120px];
+  }
+  .field-wrapper {
+    @apply w-full flex mb-[20px];
+  }
+  .vert-center {
+    @apply items-center;
+  }
+
+  .main-info-wrapper {
+    @apply w-full flex items-center text-[12px] font-normal font-lexend text-white mb-[2px];
+  }
+  .error-info-wrapper {
+    @apply ml-[25px] text-[12px] font-normal font-lexend;
+  }
+}

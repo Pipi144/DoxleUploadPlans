@@ -1,0 +1,10 @@
+type TYear = `${number}${number}${number}${number}`;
+type TMonth = `${number}${number}`;
+type TDay = `${number}${number}`;
+type THours = `${number}${number}`;
+type TMinutes = `${number}${number}`;
+type TSeconds = `${number}${number}`;
+type TMilliseconds = `${number}${number}${number}`;
+export type TISODate = `${TYear}-${TMonth}-${TDay}`;
+export type TISOTime = `${THours}:${TMinutes}:${TSeconds}.${TMilliseconds}`;
+export type TISODateTime = `${TISODate}T${TISOTime}Z`;

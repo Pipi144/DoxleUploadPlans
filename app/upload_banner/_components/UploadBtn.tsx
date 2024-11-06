@@ -1,5 +1,6 @@
 "use client";
 import { Button, ButtonProps } from "@/components/ui/button";
+import { DoxleRoutes } from "@/DoxleRoutes";
 import { useRouter } from "next/navigation";
 import React, { forwardRef } from "react";
 
@@ -9,7 +10,7 @@ const UploadBtn = forwardRef<HTMLButtonElement, UploadBtnProps>(
   (props: UploadBtnProps, ref) => {
     const router = useRouter();
     const onClickBtn = () => {
-      router.push("/upload_page");
+      router.push(DoxleRoutes.UploadPlanPage);
     };
     return (
       <Button
