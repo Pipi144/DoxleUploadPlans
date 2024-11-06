@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import DroppingEffect from "./_components/DroppingEffect";
 import { IoAddOutline } from "react-icons/io5";
 import UploadProvider from "./_components/hooks/UploadProvider";
+import UploadItem from "./_components/UploadItem";
 
 type Props = {};
 
@@ -72,7 +73,7 @@ export default function UploadPage(props: Props) {
               </div>
 
               <div
-                className="w-full flex h-[350px] mobileLg:h-[450px] tablet:h-[600px] flex-wrap overflow-auto relative bg-[rgba(242, 248, 255, 1)] border-[1px] border-dashed border-borderWhiteBg rounder-[8px]"
+                className="w-full flex h-[350px] mobileLg:h-[450px] tablet:h-[600px] flex-wrap overflow-auto relative bg-[rgba(242,248,255,1)] border-[1px] border-dashed border-borderWhiteBg rounder-[8px]"
                 onDrop={handleFileFolderDrop}
                 onDragEnter={handleFileDragEnter}
                 onDragOver={handleFileDragEnter}
@@ -87,10 +88,10 @@ export default function UploadPage(props: Props) {
               >
                 {/* condition when there are no files */}
                 {allUploadedFiles.length === 0 && projectFiles.length === 0 && (
-                  <span className="absolute self-center text-black text-[14px] tablet:text-[16px] font-lexend font-medium ">
+                  <span className="absolute left-1/2 top-1/2 -translate-x-[50%] -translate-y-[50%]  text-black text-[14px] tablet:text-[16px] font-lexend font-medium ">
                     drag & drop or{" "}
                     <span
-                      className="text-[rgba(43, 155, 247, 1)] hover:text-doxleColor underline cursor-pointer  transition-all duration-200 ease-linear "
+                      className="text-[rgba(43,155,247,1)] hover:text-doxleColor underline cursor-pointer  transition-all duration-200 ease-linear "
                       {...getRootProps({})}
                     >
                       <input {...getInputProps()} />
@@ -100,7 +101,7 @@ export default function UploadPage(props: Props) {
                   </span>
                 )}
 
-                {/* {allUploadedFiles
+                {allUploadedFiles
                   .filter(
                     (item) =>
                       !projectFiles.find(
@@ -113,7 +114,7 @@ export default function UploadPage(props: Props) {
                     <UploadItem key={idx} item={item} projectId={projectId} />
                   ))}
 
-                {projectFiles
+                {/* {projectFiles
                   .filter(
                     (f) =>
                       (f.status !== "Pending Upload" &&

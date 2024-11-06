@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, PropsWithChildren } from "react";
+import React, { createContext, PropsWithChildren, useContext } from "react";
 import { IUploadPageContextValue } from "./useUploadPage";
 
 const UploadPageContext = createContext<IUploadPageContextValue | null>(null);
@@ -16,3 +16,5 @@ const UploadProvider = ({
 };
 
 export default UploadProvider;
+export const useUploadPageContext = () =>
+  useContext(UploadPageContext) as IUploadPageContextValue;
