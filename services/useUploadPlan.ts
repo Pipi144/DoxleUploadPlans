@@ -335,9 +335,11 @@ interface TVerifyEmailParams {
 }
 interface IVerifyEmailProjectProps {
   onSuccessVerify?: (project: IPlanProjectDetails) => void;
+  onErrorVerify?: (error?: AxiosBackendErrorReturn) => void;
 }
 export const useVerifyEmailProject = ({
   onSuccessVerify,
+  onErrorVerify,
 }: IVerifyEmailProjectProps) => {
   const upload = useMutation<
     AxiosResponse<IPlanProjectDetails>,
@@ -358,7 +360,9 @@ export const useVerifyEmailProject = ({
     onSuccess: (response) => {
       if (onSuccessVerify) onSuccessVerify(response.data);
     },
-    onError: () => {},
+    onError: (error) => {
+      if (onErrorVerify) onErrorVerify(error);
+    },
   });
   const resend = useMutation<AxiosResponse, AxiosBackendErrorReturn, string>({
     mutationKey: getPlanMutateKey("resend-verification"),

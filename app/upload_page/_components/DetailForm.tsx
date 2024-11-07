@@ -187,7 +187,7 @@ const DetailForm = () => {
             minutes, please check your spam folder.
           </motion.div>
 
-          <VerifyingEmailBanner containerStyle={{ alignSelf: "center" }} />
+          <VerifyingEmailBanner />
 
           <NavHomeBtn
             style={{ alignSelf: "center" }}
@@ -208,7 +208,9 @@ const DetailForm = () => {
 
 export default DetailForm;
 
-export const VerifyingEmailBanner = (props: TSvgAnimatedWrapper<"div">) => {
+export const VerifyingEmailBanner = (
+  props: Omit<TSvgAnimatedWrapper<"div">, "containerStyle">
+) => {
   return (
     <motion.div
       className="w-[60%] max-w-[500px] min-w-[250px] mb-[20px] mt-[20px]  aspect-[248/260] flex self-center"
