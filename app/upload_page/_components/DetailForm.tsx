@@ -16,14 +16,11 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { MdEmail } from "react-icons/md";
 import useDetailForm from "./hooks/useDetailForm";
-import { HTMLAttributes } from "react";
 import { checkEmailValid } from "@/Utilities/FunctionUtility";
 import NavHomeBtn from "@/components/DesignPatterns/NavHomeBtn";
 import { TSvgAnimatedWrapper } from "@/Models/UtilitiModels";
 
-type Props = {};
-
-const DetailForm = (props: Props) => {
+const DetailForm = () => {
   const {
     register,
     handleSubmit,
@@ -211,10 +208,7 @@ const DetailForm = (props: Props) => {
 
 export default DetailForm;
 
-export const VerifyingEmailBanner = ({
-  containerStyle,
-  ...props
-}: TSvgAnimatedWrapper<"div">) => {
+export const VerifyingEmailBanner = (props: TSvgAnimatedWrapper<"div">) => {
   return (
     <motion.div
       className="w-[60%] max-w-[500px] min-w-[250px] mb-[20px] mt-[20px]  aspect-[248/260] flex self-center"

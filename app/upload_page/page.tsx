@@ -32,7 +32,6 @@ export default function UploadPage() {
     floatingBtnVariants,
     hideAddBtn,
     fileContainerRef,
-    setHideAddBtn,
   } = useUploadPage({});
   return (
     <>

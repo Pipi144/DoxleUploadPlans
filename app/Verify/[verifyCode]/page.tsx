@@ -4,11 +4,11 @@ import React from "react";
 import useVerifyEmail from "./_Hooks/useVerifyEmail";
 
 type Props = {
-  params: { urlParams: string };
+  _params: { urlParams: string };
 };
 
-const VerifyEmail = ({ params }: Props) => {
-  useVerifyEmail(params.urlParams);
+const VerifyEmail = ({ _params }: Props) => {
+  useVerifyEmail(_params.urlParams);
   return <></>;
 };
 

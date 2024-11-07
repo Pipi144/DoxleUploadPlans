@@ -21,10 +21,7 @@ export default async function RootLayout({
   );
 }
 
-const EmailBanner = ({
-  containerStyle,
-  ...props
-}: TSvgWrapper<HTMLDivElement>) => {
+const EmailBanner = (props: TSvgWrapper<HTMLDivElement>) => {
   return (
     <div
       className="w-[60%] max-w-[500px] min-w-[250px] mb-[20px] mt-[20px] aspect-[248/260] flex animate-scale-up"

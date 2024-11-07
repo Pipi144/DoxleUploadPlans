@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLAttributes, PropsWithChildren } from "react";
+import React, { forwardRef } from "react";
 import { Button, ButtonProps } from "../ui/button";
 
 const NavHomeBtn = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -10,5 +10,7 @@ const NavHomeBtn = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     />
   );
 });
+
+NavHomeBtn.displayName = "NavHomeBtnFwRef"
 
 export default NavHomeBtn;
