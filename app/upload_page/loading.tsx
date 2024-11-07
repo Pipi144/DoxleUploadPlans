@@ -2,9 +2,7 @@ import DoxleIconPlain from "@/components/DoxleIcons";
 import GradualSpacing from "@/components/ui/gradual-spacing";
 import React from "react";
 
-type Props = {};
-
-const loading = (props: Props) => {
+const loading = () => {
   return (
     <>
       <DoxleIconPlain

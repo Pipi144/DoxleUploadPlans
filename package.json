@@ -9,7 +9,10 @@
     "lint": "next lint",
     "sync": "aws s3 sync ./out s3://doxle.com",
     "clearcache": "aws cloudfront create-invalidation --distribution-id E3GN11OLUCHFB6 --paths \"/*\"",
-    "deploy": "next build && npm run sync && npm run clearcache"
+    "zip": "zip -r build.zip ./out",
+    "upload": "aws s3 cp build.zip s3://doxle.com/build.zip",
+    "deploy": "aws amplify start-deployment --app-id d2uz5a48ezu6ik --branch-name staging --source-url \"s3://doxle.com/build.zip\"",
+    "push": "next build && npm run zip && npm run upload && npm run deploy"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.2",
