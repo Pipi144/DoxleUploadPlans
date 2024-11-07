@@ -9,6 +9,7 @@ import {
   DoxleWordIcon,
 } from "@/components/DoxleIcons";
 import { addMiddleEllipsisText } from "@/Utilities/FunctionUtility";
+import Image from "next/image";
 
 type Props = {
   file: File;
@@ -55,7 +56,8 @@ const AddedFileItem = ({ file, handleRemoveFile, index }: Props) => {
         <IoVideocamOutline className="text-white" size={18} />
       ) : (
         supportedFileType === "image" && (
-          <img
+          <Image
+            alt={"file-prev"}
             className="mr-[4px] w-[18px] object-contain aspect-square"
             src={imgUrl}
           />
