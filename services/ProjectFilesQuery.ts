@@ -127,7 +127,7 @@ export const useRetrieveProjectDetails = ({
   //   useShallow((state) => state.showNotification)
   // );
   return useQuery({
-    queryKey: ["project-details", projectId],
+    queryKey: getProjectDetailQueryKey(projectId ?? ""),
     queryFn: async () => {
       try {
         const resp = await axios.get<IPlanProjectDetails>(
@@ -155,8 +155,41 @@ export const useRetrieveProjectDetails = ({
   });
 };
 
+export const useSetProjectPlanQueryData = () => {
+  const queryClient = useQueryClient();
+  const updateProjectDetail = (project: IPlanProjectDetails) => {
+    const qKey = getProjectDetailQueryKey(project.projectId);
+    const dataActive = queryClient.getQueryCache().findAll({
+      predicate: (query) =>
+        qKey.every((key) => query.queryKey.includes(key)) && query.isActive(),
+    });
+    dataActive.forEach((query) => {
+      queryClient.setQueryData<DefiniteAxiosQueryData<IPlanProjectDetails>>(
+        query.queryKey,
+        (oldData) =>
+          produce(oldData, (draft) => {
+            if (draft) {
+              draft.data = project;
+              return draft;
+            } else queryClient.refetchQueries({ queryKey: query.queryKey });
+          })
+      );
+    });
+  };
+
+  const refetchProjectDetail = (projectId: string) => {
+    queryClient.refetchQueries({
+      queryKey: getProjectDetailQueryKey(projectId),
+    });
+  };
+  return { updateProjectDetail, refetchProjectDetail };
+};
 export const getProjectFileQueryKey = (projectId: string) => [
   "project-files",
+  projectId,
+];
+export const getProjectDetailQueryKey = (projectId: string) => [
+  "project-details",
   projectId,
 ];
 export default useRetrieveProjectFiles;

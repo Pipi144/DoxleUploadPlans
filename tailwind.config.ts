@@ -51,6 +51,7 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
         doxleColor: "rgba(54, 63, 245, 1)",
+        rowBorderColor: "rgba(239,240,244,1)",
       },
       screens: {
         landscape: {
