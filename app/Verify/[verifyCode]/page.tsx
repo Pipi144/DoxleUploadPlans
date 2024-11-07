@@ -4,11 +4,13 @@ import React from "react";
 import useVerifyEmail from "./_Hooks/useVerifyEmail";
 
 type Props = {
-  _params: { urlParams: string };
+  params: Promise<{ slug: string }>;
 };
 
-const VerifyEmail = ({ _params }: Props) => {
-  useVerifyEmail(_params.urlParams);
+const VerifyEmail = async ({ params }: Props) => {
+  const { slug } = await params;
+
+  useVerifyEmail(slug);
   return <></>;
 };
 

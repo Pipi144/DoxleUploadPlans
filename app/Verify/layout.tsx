@@ -1,7 +1,7 @@
 import DoxleTopMenu from "@/components/DesignPatterns/DoxleTopMenu";
 import { TSvgWrapper } from "@/Models/UtilitiModels";
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
