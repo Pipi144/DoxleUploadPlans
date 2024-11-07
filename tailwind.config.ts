@@ -79,6 +79,7 @@ const config: Config = {
       fontFamily: {
         lexend: ["Lexend", "sans-serif"],
         sourcecode: ["Source Code Pro", "monospace"],
+        lora: ["Lora", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -98,6 +99,8 @@ const config: Config = {
       boxShadow: {
         "black-soft":
           "0px 4px 10px rgba(128, 128, 128, 0.5), 0px 1px 3px rgba(128, 128, 128, 0.5)",
+        "white-3d-left":
+          "-10px 0px 30px rgba(0, 0, 0, 0.15), -5px 0px 15px rgba(0, 0, 0, 0.1)",
       },
       borderColor: {
         dxBorder: "rgba(239,240,244,1)",
