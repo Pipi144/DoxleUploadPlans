@@ -15,7 +15,7 @@ const loading = () => {
       <GradualSpacing
         text="Initializing session..."
         className="text-black text-[18px] tablet:text-[20px] font-lexend font-semibold leading-1"
-        duration={1}
+        duration={0.5}
       />
     </>
   );

@@ -1,7 +1,9 @@
 import React from "react";
 import UploadBannerBgLine from "./UploadBannerBgLine";
 import DoxleIconPlain from "@/components/DoxleIcons";
-import UploadBtn from "./_components/UploadBtn";
+
+import Link from "next/link";
+import { DoxleRoutes } from "@/DoxleRoutes";
 
 export default async function UploadBanner() {
   return (
@@ -17,7 +19,13 @@ export default async function UploadBanner() {
           </span>
         </div>
 
-        <UploadBtn />
+        <Link
+          href={DoxleRoutes.UploadPlanPage}
+          className="self-start bg-black text-[14px] tablet:text-[16px] font-lexend text-white font-medium transition-all duration-200 ease-linear active:bg-[rgba(0,0,0,0.25)] py-[5px] tablet:py-[8px] px-[10px] tablet:px[16px] rounded-none hover:rounded-[8px]"
+          prefetch={true}
+        >
+          Upload plans
+        </Link>
       </div>
 
       <div className="flex relative max-w-[768px] w-full tablet:w-1/2 laptop:w-3/5 landscape:w-2/5 tablet:h-[95%] laptop:h-full landscape:h-full flex-1 tablet:flex-none ml-[20%] mobileMd:ml-[15%] tablet:mb-0 mb-[20px] mobileMd:mb-[40px] tablet:ml-0 transition-all duration-200 ease-linear">

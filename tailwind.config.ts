@@ -80,6 +80,8 @@ const config: Config = {
         lexend: ["Lexend", "sans-serif"],
         sourcecode: ["Source Code Pro", "monospace"],
         lora: ["Lora", "serif"],
+        plexSanJp: ["IBM Plex Sans JP", "sans-serif"],
+        plexSanThai: ["IBM Plex Sans Thai", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -87,20 +89,20 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        gridBg: `linear-gradient(0deg, transparent 99%, rgba(230, 230, 230, 0.8) 95%), linear-gradient(90deg, transparent 99%, rgba(230, 230, 230, 0.8) 95%)`,
+        gridBg: `linear-gradient(0deg, transparent 97%, #D5DAF840 93%), linear-gradient(90deg, transparent 97%, #D5DAF840 93%)`,
       },
       backgroundColor: {
-        primaryBg: "rgba(241, 242, 245, 1)",
+        primaryBg: "rgba(250,250,255, 1)",
         lightBlackBg: "rgba(44,44,44,1)",
       },
       backgroundSize: {
-        "grid-bg-size": "60px 50px",
+        "grid-bg-size": "40px 40px",
       },
       boxShadow: {
         "black-soft":
           "0px 4px 10px rgba(128, 128, 128, 0.5), 0px 1px 3px rgba(128, 128, 128, 0.5)",
         "white-3d-left":
-          "-10px 0px 30px rgba(0, 0, 0, 0.15), -5px 0px 15px rgba(0, 0, 0, 0.1)",
+          "-10px 0px 30px rgba(0, 0, 0, 0.15), -5px 0px 15px rgba(0, 0, 0, 0.15)",
       },
       borderColor: {
         dxBorder: "rgba(239,240,244,1)",
