@@ -7,7 +7,7 @@ import React from "react";
 
 type Props = {};
 
-const TopBar = (props: Props) => {
+const DoxleTopMenu = (props: Props) => {
   const router = useRouter();
   return (
     <div className="max-w-[1280px] w-[calc(100%-40px)] flex fixed top-[20px] justify-between mx-[20px]">
@@ -28,4 +28,4 @@ const TopBar = (props: Props) => {
   );
 };
 
-export default TopBar;
+export default DoxleTopMenu;

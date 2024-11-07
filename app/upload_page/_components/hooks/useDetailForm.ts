@@ -14,11 +14,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useUploadPageContext } from "./UploadProvider";
-import { useSetProjectPlanQueryData } from "../../_services/ProjectFilesQuery";
+import { useSetProjectPlanQueryData } from "../../../../services/ProjectFilesQuery";
 import {
   useAWSUpdatePlanDetails,
   useVerifyEmailProject,
-} from "../../_services/useUploadPlan";
+} from "../../../../services/useUploadPlan";
 import { useInterval } from "@/Utilities/HookUtilities";
 
 type TDetailInput = {

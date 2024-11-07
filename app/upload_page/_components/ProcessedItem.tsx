@@ -14,7 +14,7 @@
 
 import { BiErrorCircle } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
-import { ProjectFile } from "../_services/ProjectFilesQuery";
+import { ProjectFile } from "../../../services/ProjectFilesQuery";
 import useProcessedItem from "./hooks/useProcessedItem";
 import { Progress } from "@/components/ui/progress";
 import {

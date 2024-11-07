@@ -11,10 +11,10 @@ import { ILocalUploadedFile } from "@/Models/FileUpload";
 import useRetrieveProjectFiles, {
   ProjectFile,
   useRetrieveProjectDetails,
-} from "../../_services/ProjectFilesQuery";
+} from "../../../../services/ProjectFilesQuery";
 import { IPlanProjectDetails } from "@/Models/project";
 import { IFolderUploadDetails, TAllowedFileType } from "@/Models/UtilitiModels";
-import useMutateProject from "../../_services/ProjectQueryHooks";
+import useMutateProject from "../../../../services/ProjectQueryHooks";
 import { useDoxleErrorWarningStore } from "@/GeneralStores/useDoxleErrorWarningStore";
 import useProcessFileDrop from "./useProcessFileDrop";
 

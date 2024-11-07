@@ -17,9 +17,9 @@ import { produce } from "immer";
 import {
   ProjectFile,
   useSetProjectFileQueryData,
-} from "../../_services/ProjectFilesQuery";
+} from "../../../../services/ProjectFilesQuery";
 import { useUploadPageContext } from "./UploadProvider";
-import { useAWSMutatePlan } from "../../_services/useUploadPlan";
+import { useAWSMutatePlan } from "../../../../services/useUploadPlan";
 
 type Props = { item: ProjectFile };
 
