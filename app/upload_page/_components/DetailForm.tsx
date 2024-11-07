@@ -155,8 +155,7 @@ const DetailForm = () => {
             commitment to safeguarding your privacy, please refer to our Privacy
             Policy.
           </span>
-          <motion.input
-            layout="size"
+          <input
             type="submit"
             className="text-[14px] tablet:text-[16px] font-lexend font-medium text-white bg-black mt-[20px] max-w-[140px] py-[10px] px-[20px]  rounded-[4px] hover:rounded-[12px] self-center hover:opacity-80 cursor-pointer transition-all duration-200 ease-linear"
             disabled={isUpdatingDetail}

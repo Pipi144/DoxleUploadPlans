@@ -6,6 +6,7 @@ import { notFound, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const useVerifyEmail = () => {
+  const [error, setError] = useState<Error | undefined>(undefined);
   const [showBannerSuccess, setShowBannerSuccess] = useState(false);
   const searchParams = useSearchParams();
   const verificationCode = searchParams.get("code");
@@ -24,11 +25,17 @@ const useVerifyEmail = () => {
     },
     onErrorVerify: (error) => {
       console.log("ERROR:", error);
-      throw new Error(
-        error?.detail ?? "Failed to verify, your link may have expired"
+      setError(
+        new Error(
+          error?.detail ?? "Failed to verify, your link may have expired"
+        )
       );
     },
   });
+  useEffect(() => {
+    if (error) throw error;
+  }, [error]);
+
   useEffect(() => {
     if (!verificationCode || !projectId) {
       notFound();

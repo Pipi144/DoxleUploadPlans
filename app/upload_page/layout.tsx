@@ -7,7 +7,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-1 justify-center items-center bg-grid-bg-size bg-gridBg bg-primaryBg relative overflow-auto p-[20px]">
+    <div className="flex flex-1 flex-col justify-center items-center bg-grid-bg-size bg-gridBg bg-primaryBg relative overflow-auto p-[20px]">
       <DoxleTopMenu />
       {children}
     </div>

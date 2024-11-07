@@ -35,7 +35,7 @@ export default function Error({
         </svg>
       </div>
 
-      <span className="text-[35px] laptop:text-[50px] font-semibold font-lexend mb-[20px]">
+      <span className="text-[35px] laptop:text-[50px] font-semibold font-lexend mb-[20px] text-center">
         {error.message}
       </span>
 
