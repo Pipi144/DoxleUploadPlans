@@ -53,7 +53,6 @@ export const DoxleTextIcon = ({
   return (
     <div
       style={{
-        width: 119,
         ...containerStyle,
         aspectRatio: 119 / 18,
         display: "flex",

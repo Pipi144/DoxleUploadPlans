@@ -3,7 +3,6 @@ import UploadBannerBgLine from "./UploadBannerBgLine";
 import DoxleIconPlain from "@/components/DoxleIcons";
 import UploadBtn from "./_components/UploadBtn";
 
-
 export default async function UploadBanner() {
   return (
     <div className="flex w-full h-full justify-between transition-all duration-200 ease-linear overflow-hidden flex-col-reverse landscape:flex-row tablet:flex-row ">
