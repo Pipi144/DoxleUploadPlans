@@ -27,7 +27,7 @@ export interface IUploadPageContextValue {
   setUploadStage: React.Dispatch<React.SetStateAction<TUploadStage>>;
   projectFiles: ProjectFile[];
   projectDetail: IPlanProjectDetails | undefined;
-  setDisableNavCompleteScreen: React.Dispatch<React.SetStateAction<boolean>>;
+
   refetchProjectFiles: () => void;
 }
 
@@ -42,8 +42,6 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     ILocalUploadedFile[]
   >([]);
   const [uploadStage, setUploadStage] = useState<TUploadStage>("FileUpload");
-  const [disableNavCompleteScreen, setDisableNavCompleteScreen] =
-    useState(false);
   const [projectId, setProjectId] = useState<string | undefined>(
     urlProjectId ?? undefined
   );
@@ -235,7 +233,6 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
       setUploadStage,
       projectFiles,
       projectDetail,
-      setDisableNavCompleteScreen,
       refetchProjectFiles: projectFileQuery.refetch,
     }),
     [allUploadedFiles, uploadStage, projectFiles, projectDetail]

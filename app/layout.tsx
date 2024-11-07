@@ -1,6 +1,6 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import FileErrorWarning from "./@file_error_warning/page";
+
 import "./globals.css";
 import { useState } from "react";
 import Head from "next/head";
@@ -21,11 +21,7 @@ export default function RootLayout({
             content="width=device-width, initial-scale=1.0, user-scalable=no"
           />
         </Head>
-        <body>
-          {children}
-
-          <FileErrorWarning />
-        </body>
+        <body>{children}</body>
       </html>
     </QueryClientProvider>
   );
