@@ -27,7 +27,7 @@ const UploadItem = ({ item, projectId }: Props) => {
   })`;
   return (
     <div
-      className={`rounded-[8px] relative m-[10px 10px 5px 10px] tablet:m-[20px 20px 10px 20px] laptop:m-[30px 30px 15px 30px] bg-white border-[2px] border-solid border-borderWhiteBg self-start aspect-[0.95] p-[14px] flex flex-col w-[calc(50%-52px)] tablet:w-[calc(50%-72px)] laptop:w-[calc(50%-92px)]`}
+      className={`flex flex-col rounded-[8px] relative m-[10px] tablet:m-[20px] laptop:m-[30px] bg-white border-[2px] border-solid border-borderWhiteBg self-start aspect-[0.95] w-[calc(50%-20px)] tablet:w-[calc(50%-40px)] laptop:w-[calc(50%-60px)] p-[14px] transition-all duration-200 ease-linear`}
     >
       <div
         style={{
@@ -70,14 +70,14 @@ const UploadItem = ({ item, projectId }: Props) => {
 
       {item.fileState === "Completed" && (
         <span
-          className={`text-10px tablet:text-[14px] font-lexend font-light mt-[5px] mb-[8px] text-[rgba(0,0,0,0.5)]`}
+          className={`text-10px tablet:text-[14px] font-lexend font-light  mb-[5px] text-[rgba(0,0,0,0.5)]`}
         >
           Completed - {(item.fileItem.size / (1024 * 1024)).toFixed(2)} MB
         </span>
       )}
       {item.fileState !== "Failed" && item.fileState !== "Completed" && (
         <span
-          className={`text-10px tablet:text-[14px] font-lexend font-light mt-[5px] mb-[8px] text-[rgba(0,0,0,0.5)]`}
+          className={`text-8px tablet:text-[14px] font-lexend font-light  mb-[5px] text-[rgba(0,0,0,0.5)]`}
         >
           {(item.fileItem.size / (1024 * 1024)).toFixed(2)} MB °
           {item.fileState !== "Uploading" && item.fileState}{" "}
@@ -96,9 +96,18 @@ const UploadItem = ({ item, projectId }: Props) => {
             ? 100
             : item.fileState === "Cancelled"
             ? 0
-            : 0
+            : 5
         }
+        className="h-[5px]"
+        indicatorClassName={`h-full w-full flex-1 ${
+          item.fileState === "Completed"
+            ? "bg-[#11B221]"
+            : item.fileState === "Failed"
+            ? "bg-[#CA0730]"
+            : "bg-doxleColor"
+        }   transition-all`}
       />
+
       <div className="absolute -top-[8px] -right-[8px] z-[5] flex items-center">
         <AnimatePresence>
           {(item.fileState === "Failed" || item.fileState === "Cancelled") && (
@@ -113,7 +122,7 @@ const UploadItem = ({ item, projectId }: Props) => {
               transition={{
                 duration: 0.2,
               }}
-              className="bg-[rgba(0,0,0,0.8)] flex flex-row items-center w-[30px] tablet:w-[33px] h-[30px] tablet:h-[33px] rounded-[50%] justify-center active:bg-[rgba(0,0,0,0.25)] hover:opacity-80"
+              className="bg-[rgba(0,0,0,0.8)] flex flex-row items-center w-[30px] tablet:w-[33px] h-[30px] tablet:h-[33px] rounded-[50%] justify-center active:bg-[rgba(0,0,0,0.25)] hover:opacity-80 ml-[8px]"
             >
               <CgRedo className="text-white text-[18px] tablet:text-[20px] flex-shrink-0 " />
             </AnimatedButton>
@@ -122,7 +131,7 @@ const UploadItem = ({ item, projectId }: Props) => {
         {item.fileState !== "Completed" && (
           <AnimatedButton
             onClick={handleCancelFile}
-            className="bg-[rgba(0,0,0,0.8)] flex flex-row items-center w-[30px] tablet:w-[33px] h-[30px] tablet:h-[33px] rounded-[50%] justify-center active:bg-[rgba(0,0,0,0.25)] hover:opacity-80"
+            className="bg-[rgba(0,0,0,0.8)] flex flex-row items-center w-[30px] tablet:w-[33px] h-[30px] tablet:h-[33px] rounded-[50%] justify-center active:bg-[rgba(0,0,0,0.25)] hover:opacity-80 ml-[8px]"
           >
             <IoClose className="text-white text-[18px] tablet:text-[20px] flex-shrink-0 " />
           </AnimatedButton>

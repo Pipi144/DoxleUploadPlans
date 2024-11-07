@@ -26,3 +26,8 @@ export function addMiddleEllipsisText(str: string, maxLength: number): string {
 
   return `${start}...${end}`;
 }
+export const checkEmailValid = (value: string) => {
+  const emailRegex = /.+\@.+\..+/;
+
+  return emailRegex.test(value);
+};

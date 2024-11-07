@@ -15,11 +15,12 @@ const TopBar = (props: Props) => {
         overwrittenColor="black"
         containerStyle={{ width: 33 }}
         onClick={() => router.replace(DoxleRoutes.UploadBanner)}
+        className="cursor-pointer"
       />
 
       <span
         onClick={openDoxleHelpEmail}
-        className="text-black text-[14px] font-lexend font-semibold cursor-pointer"
+        className="text-black text-[14px] font-lexend font-semibold cursor-pointer hover:text-doxleColor transition-all duration-200 ease-linear"
       >
         help@doxle.com
       </span>

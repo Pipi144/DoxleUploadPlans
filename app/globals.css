@@ -26,12 +26,16 @@ html,
 body {
   padding: 0;
   margin: 0;
-  width: 100vw;
-  height: 100vh; /* fallback for Js load */
+  width: 100%;
+  height: 100%; /* fallback for Js load */
   display: flex;
   scroll-behavior: smooth;
 }
-
+input,
+textarea,
+select {
+  font-size: 16px !important;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;
