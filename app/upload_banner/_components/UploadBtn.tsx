@@ -2,7 +2,7 @@
 import { Button, ButtonProps } from "@/components/ui/button";
 import { DoxleRoutes } from "@/DoxleRoutes";
 import { useRouter } from "next/navigation";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect } from "react";
 
 type UploadBtnProps = ButtonProps & {};
 
@@ -12,6 +12,10 @@ const UploadBtn = forwardRef<HTMLButtonElement, UploadBtnProps>(
     const onClickBtn = () => {
       router.push(DoxleRoutes.UploadPlanPage);
     };
+    useEffect(() => {
+      localStorage.removeItem("projectId");
+    }, []);
+
     return (
       <Button
         onClick={onClickBtn}
@@ -25,6 +29,6 @@ const UploadBtn = forwardRef<HTMLButtonElement, UploadBtnProps>(
   }
 );
 
-UploadBtn.displayName = 'UploadBtn'
+UploadBtn.displayName = "UploadBtn";
 
 export default UploadBtn;

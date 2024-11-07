@@ -57,7 +57,7 @@ const UploadItem = ({ item, projectId }: Props) => {
         </svg>
       </div>
 
-      <span className="text-black text-[18px] tablet:text-[22px] font-lexend font-normal mt-[8px] tablet:mt-[14px] whitespace-nowrap overflow-hidden overflow-ellipsis">
+      <span className="text-black text-[16px] tablet:text-[22px] font-lexend font-normal mt-[8px] tablet:mt-[14px] whitespace-nowrap overflow-hidden overflow-ellipsis">
         {item.fileItem.name}
       </span>
       {item.fileState === "Failed" && (

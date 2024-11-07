@@ -57,16 +57,6 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const projectDetailQuery = useRetrieveProjectDetails({
     projectId,
     enablePolling: uploadStage === "DetailEntry",
-    onSuccessCb: (data) => {
-      if (data.processClicked) {
-        if (!data.emailVerified) setUploadStage("DetailEntry");
-        else if (!disableNavCompleteScreen) setUploadStage("Complete");
-      } else {
-        if (data.emailVerified) {
-          setUploadStage("Complete");
-        }
-      }
-    },
   });
   const { createProjectQuery } = useMutateProject({
     onSuccessCb: (data) => setProjectId(data.projectId),
@@ -91,10 +81,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     },
   ];
   const onDrop = useCallback(
-    <T extends File>(
-      acceptedFiles: T[],
-      fileRejections: FileRejection[],
-    ) => {
+    <T extends File>(acceptedFiles: T[], fileRejections: FileRejection[]) => {
       if (acceptedFiles.length > 0) {
         setAllUploadedFiles(
           produce((draft) => {
@@ -258,7 +245,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     const storageProjectId = window.localStorage.getItem("projectId");
     if (urlProjectId) window.localStorage.setItem("projectId", urlProjectId);
     else if (!projectId) {
-      if (storageProjectId) setProjectId(storageProjectId)
+      if (storageProjectId) setProjectId(storageProjectId);
       else if (!createProjectQuery.isPending)
         createProjectQuery.mutate({
           projectId: uuid(),

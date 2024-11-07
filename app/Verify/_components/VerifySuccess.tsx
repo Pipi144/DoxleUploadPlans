@@ -1,9 +1,7 @@
 import { TSvgWrapper } from "@/Models/UtilitiModels";
 import React from "react";
 
-type Props = {};
-
-const VerifySuccess = (props: Props) => {
+const VerifySuccess = () => {
   return (
     <>
       <span className="text-[20px] tablet:text-[25px] font-lexend text-black font-semibold flex items-center self-center text-center animate-slide-in-left">
@@ -16,10 +14,14 @@ const VerifySuccess = (props: Props) => {
 };
 
 export default VerifySuccess;
-const EmailBanner = (props: TSvgWrapper<HTMLDivElement>) => {
+const EmailBanner = ({
+  containerStyle,
+  ...props
+}: TSvgWrapper<HTMLDivElement>) => {
   return (
     <div
       className="w-[60%] max-w-[500px] min-w-[250px] mb-[20px] mt-[20px] aspect-[248/260] flex animate-scale-up"
+      style={containerStyle}
       {...props}
     >
       <svg

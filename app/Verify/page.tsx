@@ -6,9 +6,7 @@ import GradualSpacing from "@/components/ui/gradual-spacing";
 import DoxleIconPlain from "@/components/DoxleIcons";
 import VerifySuccess from "./_components/VerifySuccess";
 
-type Props = {};
-
-const VerifyEmail = (props: Props) => {
+const VerifyEmail = () => {
   const { showBannerSuccess } = useVerifyEmail();
 
   return showBannerSuccess ? (

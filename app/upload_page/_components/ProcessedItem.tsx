@@ -63,7 +63,7 @@ const ProcessedItem = ({ item }: Props) => {
         </svg>
       </div>
       <div className="w-full flex items-center mt-[14px]">
-        <span className="text-black text-[18px] tablet:text-[22px] font-lexend font-normal whitespace-nowrap overflow-hidden overflow-ellipsis flex-1 mr-[4px]">
+        <span className="text-black text-[16px] tablet:text-[22px] font-lexend font-normal whitespace-nowrap overflow-hidden overflow-ellipsis flex-1 mr-[4px]">
           {item.fileName}
         </span>
         {item.status === "Failed" && (
