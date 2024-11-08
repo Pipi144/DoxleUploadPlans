@@ -1,5 +1,5 @@
 import React from "react";
-import UploadBannerBgLine from "./UploadBannerBgLine";
+import UploadBannerBgLine from "./_components/UploadBannerBgLine";
 import DoxleIconPlain from "@/components/DoxleIcons";
 
 import Link from "next/link";
