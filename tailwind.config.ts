@@ -52,6 +52,8 @@ const config: Config = {
         },
         doxleColor: "rgba(54, 63, 245, 1)",
         rowBorderColor: "rgba(239,240,244,1)",
+        inputBg: "#f9fafb",
+        inputText: "#374151",
       },
       screens: {
         landscape: {

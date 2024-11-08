@@ -50,14 +50,14 @@ const HomeMenu = () => {
 
       <Link
         href={DoxleRoutes.Login}
-        className="w-[85px] h-[30px] rounded-[4px]  items-center justify-center text-black bg-white hover:bg-[#6868684b] font-lexend border-[1px] border-solid border-[#E6E6E6] ml-auto hidden laptop:flex"
+        className="w-[90px] h-[30px] rounded-[4px]  items-center justify-center text-black bg-white hover:bg-[#6868684b] font-plexSanThai border-[1px] border-solid border-[#E6E6E6] ml-auto hidden laptop:flex text-[14px] font-normal"
         prefetch={true}
       >
         Login
       </Link>
       <Link
         href={DoxleRoutes.Register}
-        className="w-[85px] h-[30px] rounded-[4px]  items-center justify-center text-white bg-[#214BC7] hover:bg-[#214BC790]   font-lexend border-[1px] border-solid border-[#16368E] ml-[14px] shadow-sm hidden laptop:flex"
+        className="w-[90px] h-[30px] rounded-[4px]  items-center justify-center text-white bg-[#214BC7] hover:bg-[#214BC790]   font-plexSanThai border-[1px] border-solid border-[#16368E] ml-[14px] shadow-sm hidden laptop:flex text-[14px] font-normal"
         prefetch={true}
       >
         Register
