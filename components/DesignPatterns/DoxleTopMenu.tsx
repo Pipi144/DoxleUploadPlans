@@ -1,20 +1,18 @@
-"use client";
 import DoxleIconPlain from "@/components/DoxleIcons";
-import { DoxleRoutes } from "@/DoxleRoutes";
 import { openDoxleHelpEmail } from "@/Utilities/FunctionUtility";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import React from "react";
 
 const DoxleTopMenu = () => {
-  const router = useRouter();
   return (
     <div className="max-w-[1280px] w-[calc(100%-40px)] flex fixed top-[20px] justify-between mx-[20px]">
-      <DoxleIconPlain
-        overwrittenColor="black"
-        containerStyle={{ width: 33 }}
-        onClick={() => router.replace(DoxleRoutes.UploadBanner)}
-        className="cursor-pointer"
-      />
+      <Link href={"/"}>
+        <DoxleIconPlain
+          overwrittenColor="black"
+          containerStyle={{ width: 33 }}
+          className="cursor-pointer"
+        />
+      </Link>
 
       <span
         onClick={openDoxleHelpEmail}

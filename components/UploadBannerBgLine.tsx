@@ -1,14 +1,6 @@
 const UploadBannerBgLine = () => {
   return (
-    <div
-      style={{
-        height: "100%",
-        aspectRatio: 1391 / 1018,
-        display: "flex",
-        zIndex: 4,
-        position: "relative",
-      }}
-    >
+    <div className="h-full aspect-[1391/1018] flex z-[4] relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="100%"

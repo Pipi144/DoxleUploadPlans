@@ -57,7 +57,7 @@ const config: Config = {
       },
       screens: {
         landscape: {
-          raw: "only screen and (orientation: landscape) and (min-width: 480px) and (max-width: 1024px)",
+          raw: "(orientation: landscape) and (max-width: 1024px)",
         },
         mobileLg: {
           raw: "(min-width: 640px)",

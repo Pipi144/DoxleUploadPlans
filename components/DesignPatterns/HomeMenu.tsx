@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DoxleIconPlain from "../DoxleIcons";
 import Link from "next/link";
 import { DoxleRoutes } from "@/DoxleRoutes";
@@ -23,8 +23,12 @@ const HomeMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const pathName = usePathname();
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   return (
-    <div className="fixed top-0 w-full flex flex-row items-center  px-[15px] tablet:px-[20px] py-[8px] tablet:py-[10px] bg-white ">
+    <div className="w-full flex flex-row items-center  px-[15px] tablet:px-[20px] py-[8px] tablet:py-[10px] bg-white z-[100]">
       <Link href={"/"}>
         <DoxleIconPlain
           className="flex !w-[40px] tablet:!w-[45px] transition-all duration-200 ease-linear "
