@@ -1,4 +1,4 @@
-import DoxleTopMenu from "../../components/DesignPatterns/DoxleTopMenu";
+import DoxleTopMenu from "./_components/DoxleTopMenu";
 
 // limitations under the License.
 export default function RootLayout({

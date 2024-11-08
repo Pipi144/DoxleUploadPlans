@@ -1,4 +1,4 @@
-import DoxleTopMenu from "@/components/DesignPatterns/DoxleTopMenu";
+import DoxleTopMenu from "@/app/upload_page/_components/DoxleTopMenu";
 import { Suspense } from "react";
 
 export default function RootLayout({

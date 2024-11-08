@@ -1,12 +1,13 @@
+"use client";
 import DoxleIconPlain from "@/components/DoxleIcons";
 import { openDoxleHelpEmail } from "@/Utilities/FunctionUtility";
 import Link from "next/link";
 import React from "react";
 
-const DoxleTopMenu = () => {
+const DoxleTopMenu = async () => {
   return (
     <div className="max-w-[1280px] w-[calc(100%-40px)] flex fixed top-[20px] justify-between mx-[20px]">
-      <Link href={"/"}>
+      <Link href={"/"} prefetch={true}>
         <DoxleIconPlain
           overwrittenColor="black"
           containerStyle={{ width: 33 }}
