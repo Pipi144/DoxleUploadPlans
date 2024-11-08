@@ -16,9 +16,9 @@ const Login = () => {
       </span>
 
       <span className="text-[14px] font-lexend font-thin mt-[10px] mb-[30px]">
-        Don't have an account?{" "}
+        {"Don't have an account? "}
         <Link href={DoxleRoutes.Register} className="text-doxleColor">
-          Signup
+          Sign up
         </Link>
       </span>
 

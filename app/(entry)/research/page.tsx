@@ -6,7 +6,7 @@ function Research() {
   return (
     <>
       <span
-        className="font-lora text-[35px] tablet:text-[50px] laptop:text-[64px] text-[#315CDB] font-medium"
+        className="font-lora text-[35px] tablet:text-[50px] laptop:text-[64px] text-[#315CDB] font-normal"
         contentEditable={false}
       >
         Our Passion

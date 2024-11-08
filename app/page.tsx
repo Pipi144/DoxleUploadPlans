@@ -28,7 +28,7 @@ export default async function Home() {
           href={DoxleRoutes.UploadBanner}
           prefetch={true}
         >
-          Upload Plans
+          Try for free
         </Link>
         <img
           src={introImg.src}

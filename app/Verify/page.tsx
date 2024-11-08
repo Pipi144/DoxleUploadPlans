@@ -4,7 +4,6 @@ import React from "react";
 import useVerifyEmail from "./_Hooks/useVerifyEmail";
 import GradualSpacing from "@/components/ui/gradual-spacing";
 import DoxleIconPlain from "@/components/DoxleIcons";
-import VerifySuccess from "../../components/DesignPatterns/EmailVerifySuccess";
 import EmailVerifySuccess from "../../components/DesignPatterns/EmailVerifySuccess";
 
 const VerifyEmail = () => {
