@@ -1,9 +1,6 @@
 import HomeMenu from "@/components/DesignPatterns/HomeMenu";
 import FileErrorWarning from "./@file_error_warning/page";
 import introImg from "../public/images/introImage.png";
-import Image, { ImageLoader } from "next/image";
-import NavHomeBtn from "@/components/DesignPatterns/NavHomeBtn";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { DoxleRoutes } from "@/DoxleRoutes";
 const descriptionText =

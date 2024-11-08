@@ -1,8 +1,7 @@
 import React from "react";
 
-type Props = {};
 
-function Products({}: Props) {
+function Products() {
   return (
     <>
       <span
