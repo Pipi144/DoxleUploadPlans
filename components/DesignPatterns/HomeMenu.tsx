@@ -11,6 +11,10 @@ import {
 } from "../ui/sheet";
 import { DoxleRoutes } from "@/DoxleRoutes";
 import { usePathname } from "next/navigation";
+import { MdFindInPage } from "react-icons/md";
+import { AiOutlineProduct } from "react-icons/ai";
+import { BiLogIn } from "react-icons/bi";
+import { PiNotePencilBold } from "react-icons/pi";
 
 const HomeMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -77,9 +81,9 @@ const HomeMenu = () => {
             </svg>
           </div>
         </SheetTrigger>
-        <SheetContent className="!border-none flex flex-col  outline-none max-w-[40%] p-[20px] bg-transparent">
-          <SheetHeader className="w-full flex flex-row items-center justify-end border-b-[1px] border-solid border-borderWhiteBg pb-[8px] mb-[5px]">
-            <SheetTitle className="w-[100px] flex aspect-[88/13]">
+        <SheetContent className="!border-none flex flex-col  outline-none max-w-[50%] p-[20px] bg-transparent">
+          <SheetHeader className="w-full flex flex-row items-center justify-end  pb-[8px] mb-[5px]">
+            <SheetTitle className="w-[120px] flex aspect-[88/13]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="100%"
@@ -104,24 +108,75 @@ const HomeMenu = () => {
           <Link
             onClick={() => setOpenMenu(false)}
             href={DoxleRoutes.Research}
-            className={`w-full text-end font-plexSanJp text-[16px] text-white font-normal  hover:text-doxleColor hover:underline transition-all duration-200 ease-linear ${
+            className={`w-full  flex flex-row items-center justify-end font-plexSanJp text-[16px] font-normal  hover:text-doxleColor hover:underline transition-all duration-200 ease-linear ${
               pathName === DoxleRoutes.Research
                 ? "underline text-doxleColor"
-                : ""
+                : "text-white"
             }  py-[5px] `}
           >
             Research
+            <MdFindInPage
+              className={`text-[30px] ml-[10px] ${
+                pathName === DoxleRoutes.Research
+                  ? "underline text-doxleColor"
+                  : "text-white"
+              } -mr-[5px]`}
+            />
           </Link>
           <Link
             onClick={() => setOpenMenu(false)}
             href={DoxleRoutes.Products}
-            className={`w-full text-end font-plexSanJp text-[16px] text-white font-normal  hover:text-doxleColor hover:underline transition-all duration-200 ease-linear ${
+            className={`w-full flex flex-row items-center justify-end font-plexSanJp text-[16px]  font-normal  hover:text-doxleColor hover:underline transition-all duration-200 ease-linear ${
               pathName === DoxleRoutes.Products
                 ? "underline text-doxleColor"
-                : ""
-            } py-[5px]`}
+                : "text-white"
+            } py-[5px] `}
           >
             Products
+            <AiOutlineProduct
+              className={`text-[30px] ml-[10px] ${
+                pathName === DoxleRoutes.Products
+                  ? "underline text-doxleColor"
+                  : "text-white"
+              } -mr-[5px]`}
+            />
+          </Link>
+
+          <Link
+            onClick={() => setOpenMenu(false)}
+            href={DoxleRoutes.Login}
+            className={`w-full flex flex-row items-center justify-end font-plexSanJp text-[16px]  font-normal  ${
+              pathName === DoxleRoutes.Login
+                ? "underline text-doxleColor"
+                : "text-white"
+            } hover:text-doxleColor hover:underline transition-all duration-200 ease-linear  py-[5px]`}
+          >
+            Login
+            <BiLogIn
+              className={`text-[30px] ml-[10px] ${
+                pathName === DoxleRoutes.Login
+                  ? "underline text-doxleColor"
+                  : "text-white"
+              } -mr-[5px]`}
+            />
+          </Link>
+          <Link
+            onClick={() => setOpenMenu(false)}
+            href={DoxleRoutes.Register}
+            className={`w-full flex flex-row items-center justify-end font-plexSanJp text-[16px]  font-normal ${
+              pathName === DoxleRoutes.Register
+                ? "underline text-doxleColor"
+                : "text-white"
+            } hover:text-doxleColor hover:underline transition-all duration-200 ease-linear  py-[5px]`}
+          >
+            Register
+            <PiNotePencilBold
+              className={`text-[25px] ml-[15px] ${
+                pathName === DoxleRoutes.Register
+                  ? "underline text-doxleColor"
+                  : "text-white"
+              } -mr-[5px]`}
+            />
           </Link>
         </SheetContent>
       </Sheet>

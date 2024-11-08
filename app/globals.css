@@ -124,6 +124,27 @@ select {
     opacity: 1;
   }
 }
+@keyframes slideInUp {
+  0% {
+    transform: translateY(-500px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    transform: translateY(500px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .animate-slide-in-left {
   animation: slideInLeft 0.5s ease forwards;
 }
@@ -131,7 +152,13 @@ select {
 .animate-slide-in-right {
   animation: slideInRight 0.5s ease forwards;
 }
+.animate-slide-in-up {
+  animation: slideInUp 0.5s ease forwards;
+}
 
+.animate-slide-in-down {
+  animation: slideInDown 0.5s ease forwards;
+}
 @keyframes scaleUp {
   0% {
     transform: scale(0);
