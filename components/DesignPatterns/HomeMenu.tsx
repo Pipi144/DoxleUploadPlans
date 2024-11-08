@@ -31,7 +31,7 @@ const HomeMenu = () => {
 
       <Link
         href={DoxleRoutes.Research}
-        className={`font-plexSanJp text-[14px] text-black font-normal mx-[30px] hover:text-doxleColor hover:underline transition-all duration-200 ease-linear hidden laptop:block ${
+        className={`font-plexSanJp text-[14px] text-black font-normal mx-[30px] hover:text-doxleColor hover:underline transition-all duration-200 ease-linear hidden tablet:block ${
           pathName === DoxleRoutes.Research ? "underline text-doxleColor" : ""
         }`}
         prefetch={true}
@@ -40,7 +40,7 @@ const HomeMenu = () => {
       </Link>
       <Link
         href={DoxleRoutes.Products}
-        className={`font-plexSanJp text-[14px] text-black font-normal mr-[30px] hover:text-doxleColor hover:underline transition-all duration-200 ease-linear hidden laptop:block ${
+        className={`font-plexSanJp text-[14px] text-black font-normal mr-[30px] hover:text-doxleColor hover:underline transition-all duration-200 ease-linear hidden tablet:block ${
           pathName === DoxleRoutes.Products ? "underline text-doxleColor" : ""
         }`}
         prefetch={true}
@@ -50,14 +50,14 @@ const HomeMenu = () => {
 
       <Link
         href={DoxleRoutes.Login}
-        className="w-[90px] h-[30px] rounded-[4px]  items-center justify-center text-black bg-white hover:bg-[#6868684b] font-plexSanThai border-[1px] border-solid border-[#E6E6E6] ml-auto hidden laptop:flex text-[14px] font-normal"
+        className="w-[90px] h-[30px] rounded-[4px]  items-center justify-center text-black bg-white hover:bg-[#6868684b] font-plexSanThai border-[1px] border-solid border-[#E6E6E6] ml-auto hidden tablet:flex text-[14px] font-normal"
         prefetch={true}
       >
         Login
       </Link>
       <Link
         href={DoxleRoutes.Register}
-        className="w-[90px] h-[30px] rounded-[4px]  items-center justify-center text-white bg-[#214BC7] hover:bg-[#214BC790]   font-plexSanThai border-[1px] border-solid border-[#16368E] ml-[14px] shadow-sm hidden laptop:flex text-[14px] font-normal"
+        className="w-[90px] h-[30px] rounded-[4px]  items-center justify-center text-white bg-[#214BC7] hover:bg-[#214BC790]   font-plexSanThai border-[1px] border-solid border-[#16368E] ml-[14px] shadow-sm hidden tablet:flex text-[14px] font-normal"
         prefetch={true}
       >
         Register
