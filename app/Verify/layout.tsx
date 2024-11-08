@@ -1,4 +1,3 @@
-import DoxleTopMenu from "@/app/upload_page/_components/DoxleTopMenu";
 import { Suspense } from "react";
 
 export default function RootLayout({
@@ -9,8 +8,6 @@ export default function RootLayout({
   return (
     <Suspense>
       <div className="w-full h-full bg-gridBg bg-grid-bg-size bg-primaryBg p-[20px] overflow-auto flex flex-col items-center justify-center relative ">
-        <DoxleTopMenu />
-
         {children}
       </div>
     </Suspense>

@@ -28,7 +28,7 @@ const HomeMenu = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-row items-center  px-[15px] tablet:px-[20px] py-[8px] tablet:py-[10px] bg-white z-[100]">
+    <div className="fixed top-0 w-full flex flex-row items-center  px-[15px] tablet:px-[20px] py-[8px] tablet:py-[10px] bg-white z-[100]">
       <Link href={"/"}>
         <DoxleIconPlain
           className="flex !w-[40px] tablet:!w-[45px] transition-all duration-200 ease-linear "
@@ -97,6 +97,7 @@ const HomeMenu = () => {
           <DrawerHeader className="w-full flex flex-row items-center justify-end  pb-[8px] mb-[5px] px-0">
             <DrawerTitle className="w-full flex items-center pb-[10px] mb-[10px] border-b-[1px] border-solid border-borderWhiteBg">
               <Link
+                onClick={() => setOpenMenu(false)}
                 href={"/"}
                 className="w-full flex flex-row items-center justify-end font-plexSanJp text-[16px] font-light  hover:text-doxleColor hover:underline transition-all duration-200 ease-linear py-[5px]"
               >

@@ -4,7 +4,7 @@ import { openDoxleHelpEmail } from "@/Utilities/FunctionUtility";
 import Link from "next/link";
 import React from "react";
 
-const DoxleTopMenu = async () => {
+const DoxleTopMenu = () => {
   return (
     <div className="max-w-[1280px] w-[calc(100%-40px)] flex fixed top-[20px] justify-between mx-[20px]">
       <Link href={"/"} prefetch={true}>

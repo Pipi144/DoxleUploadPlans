@@ -24,7 +24,6 @@ const useVerifyEmail = () => {
       }, 4000);
     },
     onErrorVerify: (error) => {
-      console.log("ERROR:", error);
       setError(
         new Error(
           error?.detail ?? "Failed to verify, your link may have expired"

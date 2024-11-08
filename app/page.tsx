@@ -13,15 +13,15 @@ export default async function Home() {
       <HomeMenu />
 
       <div className="flex w-full flex-1 justify-between transition-all duration-200 ease-linear overflow-hidden flex-col-reverse landscape:flex-row laptop:flex-row ">
-        <div className="flex flex-col justify-center items-center w-full laptop:w-3/5 landscape:w-3/5 h-fit laptop:h-full landscape:h-full   transition-all duration-200 ease-linear">
+        <div className="flex flex-col justify-center items-center w-full laptop:w-[unset] laptop:flex-1 h-fit laptop:h-full landscape:h-full   transition-all duration-200 ease-linear">
           <span
-            className="font-lora text-[35px] tablet:text-[50px] laptop:text-[64px] text-[#315CDB] font-normal text-center"
+            className="font-lora text-[35px] tablet:text-[50px] desktop:text-[64px] text-[#315CDB] font-normal text-center"
             contentEditable={false}
           >
             The future of estimating
           </span>
 
-          <span className="text-[12px] tablet:text-[14px] font-normal font-sourcecode max-w-[90%] tablet:max-w-[70%]  text-left my-[10px] laptop:my-[14px]">
+          <span className="text-[12px] tablet:text-[14px] font-normal font-sourcecode w-[90%] max-w-[90%] tablet:max-w-[800px]  text-justify my-[10px] laptop:my-[14px]">
             {descriptionText}
           </span>
 
@@ -35,11 +35,11 @@ export default async function Home() {
           <img
             src={introImg.src}
             alt="intro image"
-            className="w-[90%] max-w-[600px] object-contain hidden laptop:block"
+            className="w-[70%] max-w-[800px] mt-[30px] object-contain hidden laptop:block "
           />
         </div>
 
-        <div className="flex relative max-w-[768px] w-full laptop:w-2/5 landscape:w-2/5 laptop:h-full landscape:h-full flex-1 laptop:flex-none ml-[18%] mobileMd:ml-[12%] mb-[20px] laptop:mb-0 transition-all duration-200 ease-linear">
+        <div className="flex relative max-w-[768px] w-full laptop:w-2/5 landscape:w-2/5 laptop:h-full landscape:h-full flex-1 laptop:flex-none ml-[18%] mobileMd:ml-[12%] laptop:ml-0 mb-[20px] laptop:mb-0 transition-all duration-200 ease-linear">
           <div className="absolute w-[20%] laptop:w-[30%] top-1/2 laptop:top-1/2 min-w-[100px] laptop:min-w-[160px] max-w-[400px] aspect-square bg-[#8eb5f0] -translate-x-[50%] -translate-y-[40%] laptop:-translate-y-[40%] landscape:-translate-y-[40%] z-[1] transition-all duration-200 ease-linear" />
 
           <div className="absolute w-1/3  tablet:w-2/5 max-w-[500px] aspect-square left-[2%] rounded-[50%] bg-[#285cf2] z-0 min-w-[120px] mobileMd:min-w-[145px] laptop:min-w-[245px] landscape:min-w-[180px] top-[52%] laptop:top-1/2  transition-all duration-200 ease-linear" />

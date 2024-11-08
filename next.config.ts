@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     loader: "custom",
     path: "/",
   },
+  trailingSlash: true,
 };
 
 export default nextConfig;

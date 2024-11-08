@@ -2,7 +2,6 @@
 
 import NavHomeBtn from "@/components/DesignPatterns/NavHomeBtn";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Error({
   error,
@@ -11,11 +10,11 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
-  const router = useRouter();
   return (
-    <div className="flex flex-col justify-center items-center h-full w-full relative bg-inherit">
+    <div className="flex flex-col justify-center items-center h-full w-full relative ">
       <Link
         href="/"
+        onClick={reset}
         className="w-1/5 max-w-[140px] min-w-[100px] absolute top-[20px] left-[20px] z-100 aspect-[122/21] flex"
       >
         <svg
@@ -168,10 +167,9 @@ export default function Error({
       <NavHomeBtn
         onClick={() => {
           reset();
-          router.replace("/");
         }}
       >
-        Restart
+        <Link href={"/"}>Restart</Link>
       </NavHomeBtn>
     </div>
   );
