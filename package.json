@@ -9,9 +9,9 @@
     "lint": "next lint",
     "sync": "aws s3 sync ./out s3://doxle.com",
     "clearcache": "aws cloudfront create-invalidation --distribution-id E3GN11OLUCHFB6 --paths \"/*\"",
-    "zip": "zip -r build.zip ./out",
-    "upload": "aws s3 cp build.zip s3://doxle.com/build.zip",
-    "deploy": "aws amplify start-deployment --app-id d2uz5a48ezu6ik --branch-name staging --source-url \"s3://doxle.com/build.zip\"",
+    "zip": "cd out && zip -r ../doxle.com.zip *",
+    "upload": "aws s3 cp doxle.com.zip s3://doxle.com/doxle.com.zip",
+    "deploy": "aws amplify start-deployment --app-id d2uz5a48ezu6ik --branch-name staging --source-url \"s3://doxle.com/doxle.com.zip\"",
     "push": "next build && npm run zip && npm run upload && npm run deploy"
   },
   "dependencies": {

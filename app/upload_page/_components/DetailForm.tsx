@@ -1,17 +1,3 @@
-// Copyright 2024 selvinkamal
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 import { AnimatePresence, motion } from "framer-motion";
 
 import { MdEmail } from "react-icons/md";
@@ -19,6 +5,8 @@ import useDetailForm from "./hooks/useDetailForm";
 import { checkEmailValid } from "@/Utilities/FunctionUtility";
 import NavHomeBtn from "@/components/DesignPatterns/NavHomeBtn";
 import { TSvgAnimatedWrapper } from "@/Models/UtilitiModels";
+import EmailVerifySuccess from "@/components/DesignPatterns/EmailVerifySuccess";
+import { Button } from "@/components/ui/button";
 
 const DetailForm = () => {
   const {
@@ -33,6 +21,7 @@ const DetailForm = () => {
     isUpdatingDetail,
     sendEmailTimer,
     handleClickResendEmail,
+    showCompleteVerified,
   } = useDetailForm();
 
   const fieldWrapperClass: string =
@@ -47,6 +36,8 @@ const DetailForm = () => {
     "text-black text-[12px] tablet:text-[14px] font-sourcecode font-normal mb-[10px]";
   const fieldInputClass: string =
     "border-[1px] border-solid border-rowBorderColor rounded-[9px] bg-[#f2f8ff] focus-visible:outline-none p-[10px] tablet:p-[14px] text-[14px] tablet:text-[16px] font-lexend font-normal ";
+  if (showCompleteVerified)
+    return <EmailVerifySuccess text="Your email is already verified" />;
   return (
     <motion.form
       className="max-w-[500px] p-[20px] w-full flex flex-col "
@@ -155,12 +146,13 @@ const DetailForm = () => {
             commitment to safeguarding your privacy, please refer to our Privacy
             Policy.
           </span>
-          <input
+          <Button
             type="submit"
             className="text-[14px] tablet:text-[16px] font-lexend font-medium text-white bg-black mt-[20px] max-w-[140px] py-[10px] px-[20px]  rounded-[4px] hover:rounded-[12px] self-center hover:opacity-80 cursor-pointer transition-all duration-200 ease-linear"
             disabled={isUpdatingDetail}
-            value={isUpdatingDetail ? "Submitting ..." : "Submit"}
-          />
+          >
+            {isUpdatingDetail ? "Submitting ..." : "Submit"}
+          </Button>
         </>
       )}
 

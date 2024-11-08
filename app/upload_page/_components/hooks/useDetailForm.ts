@@ -30,8 +30,8 @@ type TDetailInput = {
 const useDetailForm = () => {
   const [sendEmailTimer, setSendEmailTimer] = useState(0);
   const [showVerifyEmail, setShowVerifyEmail] = useState(false);
-
-  const { projectDetail, setUploadStage } = useUploadPageContext();
+  const [showCompleteVerified, setShowCompleteVerified] = useState(false);
+  const { projectDetail } = useUploadPageContext();
   const { register, handleSubmit, getValues, formState } =
     useForm<TDetailInput>({
       defaultValues: {
@@ -59,7 +59,7 @@ const useDetailForm = () => {
           projectDetail.emailVerified &&
           projectDetail.userEmail === data.email
         ) {
-          setUploadStage("Complete");
+          setShowCompleteVerified(true);
         } else
           uploadDetail.mutate({
             projectId: projectDetail.projectId,
@@ -110,6 +110,7 @@ const useDetailForm = () => {
     isUpdatingDetail: uploadDetail.isPending,
     sendEmailTimer,
     handleClickResendEmail,
+    showCompleteVerified,
   };
 };
 export default useDetailForm;

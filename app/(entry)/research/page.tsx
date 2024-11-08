@@ -1,9 +1,8 @@
 import React from "react";
 
-type Props = {};
 const descriptionText =
   "We are Doxle—a dedicated and passionate team with a bold vision: to create the world’s first fully automated estimating software for the building and construction industry.\n\nOur journey is deeply rooted in this industry; we’ve lived and breathed every part of it. Over the years, we’ve witnessed firsthand the challenges that builders face, from navigating complex projects to managing soaring costs, especially in recent times due to the pandemic. Driven by a genuine desire to make a difference, we have been working relentlessly to simplify and streamline the estimating process. Through extensive research and the application of advanced machine learning algorithms, we aim to reduce time, costs, and the effort required to build accurately and efficiently.\n\nCurrently, Doxle is in its beta phase, and we’re actively collaborating with builders to refine and test our platform, ensuring it delivers the impact we envision. Our mission is not just to create a tool but to build a partner in your projects—one that brings clarity, precision, and ease to your estimating, budgeting  and pre-fab building processes.\n\nAs dog lovers ourselves, we believe in loyalty, dedication, and the joy of doing what we love—traits that fuel both our lives and our work at Doxle. After all, building a better world is something you can really sink your paws into! 🐾";
-function Research({}: Props) {
+function Research() {
   return (
     <>
       <span

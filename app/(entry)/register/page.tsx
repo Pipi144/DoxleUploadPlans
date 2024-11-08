@@ -1,8 +1,7 @@
 import React from "react";
 
-type Props = {};
 
-async function Register({}: Props) {
+async function Register() {
   return <div>Register</div>;
 }
 

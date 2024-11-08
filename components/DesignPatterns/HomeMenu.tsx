@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DoxleIconPlain from "../DoxleIcons";
 import Link from "next/link";
 import {
@@ -34,6 +34,7 @@ const HomeMenu = () => {
         className={`font-plexSanJp text-[14px] text-black font-normal mx-[30px] hover:text-doxleColor hover:underline transition-all duration-200 ease-linear hidden laptop:block ${
           pathName === DoxleRoutes.Research ? "underline text-doxleColor" : ""
         }`}
+        prefetch={true}
       >
         Research
       </Link>
@@ -42,6 +43,7 @@ const HomeMenu = () => {
         className={`font-plexSanJp text-[14px] text-black font-normal mr-[30px] hover:text-doxleColor hover:underline transition-all duration-200 ease-linear hidden laptop:block ${
           pathName === DoxleRoutes.Products ? "underline text-doxleColor" : ""
         }`}
+        prefetch={true}
       >
         Products
       </Link>
@@ -49,12 +51,14 @@ const HomeMenu = () => {
       <Link
         href={DoxleRoutes.Login}
         className="w-[85px] h-[30px] rounded-[4px]  items-center justify-center text-black bg-white hover:bg-[#6868684b] font-lexend border-[1px] border-solid border-[#E6E6E6] ml-auto hidden laptop:flex"
+        prefetch={true}
       >
         Login
       </Link>
       <Link
         href={DoxleRoutes.Register}
         className="w-[85px] h-[30px] rounded-[4px]  items-center justify-center text-white bg-[#214BC7] hover:bg-[#214BC790]   font-lexend border-[1px] border-solid border-[#16368E] ml-[14px] shadow-sm hidden laptop:flex"
+        prefetch={true}
       >
         Register
       </Link>
@@ -113,6 +117,7 @@ const HomeMenu = () => {
                 ? "underline text-doxleColor"
                 : "text-white"
             }  py-[5px] `}
+            prefetch={true}
           >
             Research
             <MdFindInPage
@@ -124,6 +129,7 @@ const HomeMenu = () => {
             />
           </Link>
           <Link
+            prefetch={true}
             onClick={() => setOpenMenu(false)}
             href={DoxleRoutes.Products}
             className={`w-full flex flex-row items-center justify-end font-plexSanJp text-[16px]  font-normal  hover:text-doxleColor hover:underline transition-all duration-200 ease-linear ${
@@ -143,6 +149,7 @@ const HomeMenu = () => {
           </Link>
 
           <Link
+            prefetch={true}
             onClick={() => setOpenMenu(false)}
             href={DoxleRoutes.Login}
             className={`w-full flex flex-row items-center justify-end font-plexSanJp text-[16px]  font-normal  ${
@@ -161,6 +168,7 @@ const HomeMenu = () => {
             />
           </Link>
           <Link
+            prefetch={true}
             onClick={() => setOpenMenu(false)}
             href={DoxleRoutes.Register}
             className={`w-full flex flex-row items-center justify-end font-plexSanJp text-[16px]  font-normal ${
