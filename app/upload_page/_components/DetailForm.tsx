@@ -5,8 +5,8 @@ import useDetailForm from "./hooks/useDetailForm";
 import { checkEmailValid } from "@/Utilities/FunctionUtility";
 import NavHomeBtn from "@/components/DesignPatterns/NavHomeBtn";
 import { TSvgAnimatedWrapper } from "@/Models/UtilitiModels";
-import EmailVerifySuccess from "@/components/DesignPatterns/EmailVerifySuccess";
 import { Button } from "@/components/ui/button";
+import SuccessBanner from "@/components/DesignPatterns/SuccessBanner";
 
 const DetailForm = () => {
   const {
@@ -37,7 +37,7 @@ const DetailForm = () => {
   const fieldInputClass: string =
     "border-[1px] border-solid border-rowBorderColor rounded-[9px] bg-[#f2f8ff] focus-visible:outline-none p-[10px] tablet:p-[14px] text-[14px] tablet:text-[16px] font-lexend font-normal ";
   if (showCompleteVerified)
-    return <EmailVerifySuccess text="Your email is already verified" />;
+    return <SuccessBanner text="Your email is already verified" />;
   return (
     <motion.form
       className="max-w-[500px] p-[20px] w-full flex flex-col "

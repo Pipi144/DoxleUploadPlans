@@ -22,6 +22,25 @@
   .clip-triangle {
     clip-path: polygon(50% 2%, 0% 100%, 100% 100%);
   }
+  .scrollbar-thin {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(54, 63, 245, 0.4) transparent; /* Firefox */
+    scroll-behavior: smooth;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #acacac;
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
 }
 
 html,

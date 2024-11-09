@@ -1,7 +1,7 @@
 import { TSvgWrapper } from "@/Models/UtilitiModels";
 import React from "react";
 
-const EmailVerifySuccess = ({ text }: { text?: string }) => {
+const SuccessBanner = ({ text }: { text?: string }) => {
   return (
     <>
       <span className="text-[20px] tablet:text-[25px] font-lexend text-black font-semibold flex items-center self-center text-center animate-slide-in-left">
@@ -13,7 +13,7 @@ const EmailVerifySuccess = ({ text }: { text?: string }) => {
   );
 };
 
-export default EmailVerifySuccess;
+export default SuccessBanner;
 const EmailBanner = ({
   containerStyle,
   ...props

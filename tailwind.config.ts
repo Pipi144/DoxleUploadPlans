@@ -91,7 +91,7 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        gridBg: `linear-gradient(0deg, transparent 97%, #D5DAF840 93%), linear-gradient(90deg, transparent 97%, #D5DAF840 93%)`,
+        gridBg: `linear-gradient(0deg, transparent 97%, #D5DAF860 93%), linear-gradient(90deg, transparent 97%, #D5DAF860 93%)`,
       },
       backgroundColor: {
         primaryBg: "rgba(250,250,255, 1)",

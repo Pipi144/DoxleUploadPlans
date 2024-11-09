@@ -4,7 +4,7 @@ import React from "react";
 import useVerifyEmail from "./_Hooks/useVerifyEmail";
 import GradualSpacing from "@/components/ui/gradual-spacing";
 import DoxleIconPlain from "@/components/DoxleIcons";
-import EmailVerifySuccess from "../../components/DesignPatterns/EmailVerifySuccess";
+import SuccessBanner from "../../components/DesignPatterns/SuccessBanner";
 import DoxleTopMenu from "../upload_page/_components/DoxleTopMenu";
 
 const VerifyEmail = () => {
@@ -13,7 +13,7 @@ const VerifyEmail = () => {
   return (
     <>
       {showBannerSuccess ? (
-        <EmailVerifySuccess />
+        <SuccessBanner />
       ) : (
         <>
           <DoxleTopMenu />
