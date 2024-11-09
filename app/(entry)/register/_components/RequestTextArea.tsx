@@ -29,7 +29,7 @@ const RequestTextArea = forwardRef<HTMLTextAreaElement, Props>(
         </div>
 
         <Textarea
-          className="w-full bg-[#e1ebfb80] font-lexend font-medium text-black text-[16px] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-doxleColor focus-visible:-ring-offset-[0.5px] transition-all duration-200 ease-linear"
+          className="w-full bg-[#e1ebfb] font-lexend font-medium text-black text-[16px] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6699cc] focus-visible:-ring-offset-[0.5px] transition-all duration-200 ease-linear"
           {...props}
           ref={ref}
         />
@@ -48,5 +48,5 @@ const RequestTextArea = forwardRef<HTMLTextAreaElement, Props>(
     );
   }
 );
-
+RequestTextArea.displayName = "RequestTextArea";
 export default RequestTextArea;

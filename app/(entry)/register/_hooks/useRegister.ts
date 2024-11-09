@@ -33,7 +33,6 @@ function useRegister() {
   const [showSuccessBanner, setShowSuccessBanner] = useState(false);
   const {
     register,
-    getValues,
     setValue,
     formState: { errors },
     watch,
@@ -54,9 +53,8 @@ function useRegister() {
   });
 
   const onSubmit = handleSubmit((data) => {
-    const rqData = getValues();
-    if (rqData.fName && rqData.lName && rqData.email)
-      requestAccessMutation.mutate(rqData);
+    if (data.fName && data.lName && data.email)
+      requestAccessMutation.mutate(data);
   });
   return {
     register,

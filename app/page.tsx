@@ -12,10 +12,11 @@ export default async function Home() {
     <div className="w-full h-full  overflow-auto flex flex-col items-center bg-gridBg bg-grid-bg-size bg-primaryBg">
       <HomeMenu />
 
-      <div className="flex w-full flex-1 justify-between transition-all duration-200 ease-linear overflow-hidden flex-col-reverse landscape:flex-row laptop:flex-row ">
+      <div className="flex w-full flex-1 justify-between transition-all duration-200 ease-linear overflow-hidden flex-col-reverse laptop:flex-row landscape:flex-row  ">
+        <div className="hidden laptop:block landscape:block w-[max(10%,120px)] " />
         <div className="flex flex-col justify-center items-center w-full laptop:w-[unset] laptop:flex-1 h-fit laptop:h-full landscape:h-full   transition-all duration-200 ease-linear">
           <span
-            className="font-lora text-[35px] tablet:text-[50px] desktop:text-[64px] text-[#315CDB] font-normal text-center"
+            className="font-lora text-[35px] tablet:text-[40px]  desktop:text-[64px] text-[#315CDB] font-normal text-center "
             contentEditable={false}
           >
             The future of estimating
@@ -35,10 +36,10 @@ export default async function Home() {
           <img
             src={introImg.src}
             alt="intro image"
-            className="w-[70%] max-w-[800px] mt-[30px] object-contain hidden laptop:block "
+            className="w-[70%]  max-w-[800px] mt-[30px] object-contain hidden laptop:block landscape:block"
           />
         </div>
-
+        <div className="hidden laptop:block landscape:block w-[max(10%,120px)]" />
         <div className="flex relative max-w-[768px] w-full laptop:w-2/5 landscape:w-2/5 laptop:h-full landscape:h-full flex-1 laptop:flex-none ml-[18%] mobileMd:ml-[12%] laptop:ml-0 mb-[20px] laptop:mb-0 transition-all duration-200 ease-linear">
           <div className="absolute w-[20%] laptop:w-[30%] top-1/2 laptop:top-1/2 min-w-[100px] laptop:min-w-[160px] max-w-[400px] aspect-square bg-[#8eb5f0] -translate-x-[50%] -translate-y-[40%] laptop:-translate-y-[40%] landscape:-translate-y-[40%] z-[1] transition-all duration-200 ease-linear" />
 
