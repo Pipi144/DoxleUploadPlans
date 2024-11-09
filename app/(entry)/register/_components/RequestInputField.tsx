@@ -1,7 +1,6 @@
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { AnimatePresence, motion } from "framer-motion";
-import { forwardRef, InputHTMLAttributes, PropsWithoutRef } from "react";
+import { forwardRef, InputHTMLAttributes } from "react";
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   fieldLabel?: string;
