@@ -75,7 +75,7 @@ const config: Config = {
           raw: "(min-width: 1024px)",
         },
         desktop: {
-          raw: "(min-width: 1480px)",
+          raw: "(min-width: 1280px)",
         },
       },
       fontFamily: {
