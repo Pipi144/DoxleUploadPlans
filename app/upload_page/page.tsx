@@ -10,7 +10,6 @@ import UploadItem from "./_components/UploadItem";
 import ProcessedItem from "./_components/ProcessedItem";
 import DetailForm from "./_components/DetailForm";
 
-
 const AnimatedButton = motion.create(Button);
 export default function UploadPage() {
   const {
@@ -58,7 +57,7 @@ export default function UploadPage() {
                     Upload your plans
                   </span>
                   <span className="text-black text-[10px] tablet:text-[12px] laptop:text-[14px] font-lexend font-normal">
-                    Only pdf and zip files are allowed. 100MB maximum size
+                    Only pdf and zip files are allowed. 20MB maximum size
                   </span>
                 </div>
 

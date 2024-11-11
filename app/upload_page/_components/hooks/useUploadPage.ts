@@ -32,6 +32,7 @@ export interface IUploadPageContextValue {
 }
 
 type TUploadStage = "FileUpload" | "DetailEntry" | "Complete";
+const sizeLimit = 20971520;
 const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const [hideAddBtn, setHideAddBtn] = useState(false);
   const [pendingFolderUpload, setPendingFolderUpload] = useState<
@@ -121,7 +122,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: { "application/pdf": [".pdf"], "application/zip": [".zip"] },
-    maxSize: 110000000,
+    maxSize: sizeLimit,
     multiple: true,
   });
 
@@ -184,7 +185,11 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const handleFileFolderDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     try {
       setFilesOnDragged(false);
-      const res = await handleProcessDropEntries(e, allowedFileTypes);
+      const res = await handleProcessDropEntries(
+        e,
+        allowedFileTypes,
+        sizeLimit
+      );
       // all files are failed=> show error
       if (typeof res === "string") alert(res);
       else {

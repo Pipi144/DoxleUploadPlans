@@ -56,7 +56,8 @@ const useProcessFileDrop = () => {
   };
   const extractFolderFiles = async (
     folderEntry: FileSystemDirectoryEntry,
-    allowedTypeList: TAllowedFileType[]
+    allowedTypeList: TAllowedFileType[],
+    sizeLimit: number
   ): Promise<TSuccessDropResult> => {
     let isNested: boolean = false;
     const folderName = folderEntry.name;
@@ -86,12 +87,14 @@ const useProcessFileDrop = () => {
           const file = await getFile(fileEntry);
           if (file) {
             if (checkFileTypeValid(file, allowedTypeList)) {
-              if (file.size > 50000000)
+              if (file.size > sizeLimit)
                 filesRejected.push({
                   file,
                   errors: [
                     {
-                      message: "File size is greater than 50Mb",
+                      message: `File size is greater than ${
+                        sizeLimit / (1024 * 1024)
+                      }Mb`,
                       code: "file-too-large",
                     },
                   ],
@@ -122,7 +125,8 @@ const useProcessFileDrop = () => {
 
   const handleProcessDropEntries = async (
     e: React.DragEvent<HTMLDivElement>,
-    allowedTypeList: TAllowedFileType[]
+    allowedTypeList: TAllowedFileType[],
+    sizeLimit: number = 50000000
   ): Promise<TSuccessDropResult[] | TProcessError> => {
     try {
       const { files: fileEntries, folders } = getEntriesDrop(e);
@@ -132,7 +136,11 @@ const useProcessFileDrop = () => {
       if (folders.length > 0) {
         const folderData: TSuccessDropResult[] = [];
         for (const folder of folders) {
-          const result = await extractFolderFiles(folder, allowedTypeList);
+          const result = await extractFolderFiles(
+            folder,
+            allowedTypeList,
+            sizeLimit
+          );
           folderData.push(result);
         }
         finalData = finalData.concat(folderData);
@@ -145,12 +153,14 @@ const useProcessFileDrop = () => {
           const file = await getFile(fileItem);
           if (file) {
             if (checkFileTypeValid(file, allowedTypeList)) {
-              if (file.size > 110000000)
+              if (file.size > sizeLimit)
                 errorFiles.push({
                   file,
                   errors: [
                     {
-                      message: "File size is greater than 110Mb",
+                      message: `File size is greater than ${Math.round(
+                        sizeLimit / (1024 * 1024)
+                      )}Mb`,
                       code: "file-too-large",
                     },
                   ],

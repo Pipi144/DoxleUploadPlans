@@ -5,6 +5,7 @@ import "./globals.css";
 import { useState } from "react";
 import Head from "next/head";
 import { Toaster } from "@/components/ui/toaster";
+import FileErrorWarning from "./@file_error_warning/page";
 
 export default function RootLayout({
   children,
@@ -26,6 +27,7 @@ export default function RootLayout({
           {children}
 
           <Toaster />
+          <FileErrorWarning />
         </body>
       </html>
     </QueryClientProvider>

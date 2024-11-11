@@ -1,5 +1,4 @@
 import HomeMenu from "@/components/DesignPatterns/HomeMenu";
-import FileErrorWarning from "./@file_error_warning/page";
 import introImg from "../public/images/introImage.png";
 import Link from "next/link";
 import { DoxleRoutes } from "@/DoxleRoutes";
@@ -16,7 +15,7 @@ export default async function Home() {
         <div className="hidden laptop:block landscape:block w-[max(10%,100px)] " />
         <div className="flex flex-col justify-center items-center w-full laptop:w-[unset] laptop:flex-1 h-fit laptop:h-full landscape:h-full   transition-all duration-200 ease-linear">
           <span
-            className="font-lora text-[35px] tablet:text-[40px]  desktop:text-[55px] text-[#315CDB] font-normal text-center desktop:min-w-[535px]"
+            className="font-lora text-[35px] tablet:text-[40px]  desktop:text-[52px] text-[#315CDB] font-normal text-center desktop:min-w-[535px]"
             contentEditable={false}
           >
             The future of estimating
@@ -27,7 +26,7 @@ export default async function Home() {
           </span>
 
           <Link
-            className="bg-black active:bg-slate-500 cursor-pointer hover:opacity-70 disabled:bg-slate-500 min-w-[70px] tablet:min-w-[80px] flex text-white disabled:text-[rgba(255,255,255,0.5)] text-[14px] tablet:text-[16px]  font-lexend font-normal justify-center items-center rounded-[4px] hover:rounded-[8px]  py-[10px] tablet:py-[12px] px-[20px] tablet:px-[24px] leading-normal mt-[20px] mb-[40px] transition-all duration-200 ease-linear"
+            className="bg-black active:bg-slate-500 cursor-pointer hover:opacity-70 disabled:bg-slate-500 min-w-[70px] tablet:min-w-[80px] flex text-white disabled:text-[rgba(255,255,255,0.5)] text-[14px] tablet:text-[16px]  font-lexend font-normal justify-center items-center rounded-[4px] hover:rounded-[8px]  py-[8px] desktop:py-[12px] px-[20px] desktop:px-[24px] leading-normal  mt-[10px] desktop:mt-[20px] mb-[20px] desktop:mb-[40px] transition-all duration-200 ease-linear h-fit"
             href={DoxleRoutes.UploadPlanPage}
             prefetch={true}
           >
@@ -50,8 +49,6 @@ export default async function Home() {
           <UploadBannerBgLine />
         </div>
       </div>
-
-      <FileErrorWarning />
     </div>
   );
 }
