@@ -5,7 +5,7 @@ import useVerifyEmail from "./_Hooks/useVerifyEmail";
 import GradualSpacing from "@/components/ui/gradual-spacing";
 import DoxleIconPlain from "@/components/DoxleIcons";
 import SuccessBanner from "../../components/DesignPatterns/SuccessBanner";
-import DoxleTopMenu from "../upload_page/_components/DoxleTopMenu";
+import DoxleTopMenu from "../(upload_page)/_components/DoxleTopMenu";
 
 const VerifyEmail = () => {
   const { showBannerSuccess } = useVerifyEmail();

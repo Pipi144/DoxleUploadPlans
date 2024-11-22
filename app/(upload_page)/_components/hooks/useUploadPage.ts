@@ -34,18 +34,22 @@ export interface IUploadPageContextValue {
 type TUploadStage = "FileUpload" | "DetailEntry" | "Complete";
 const sizeLimit = 20971520;
 const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
-  const [hideAddBtn, setHideAddBtn] = useState(false);
+  const [hideAddBtn, setHideAddBtn] = useState(false); // floating add btn control
   const [pendingFolderUpload, setPendingFolderUpload] = useState<
     IFolderUploadDetails[] | null
-  >(null);
-  const [filesOnDragged, setFilesOnDragged] = useState(false);
+  >(null); // folder upload control to handle dropped folders
+  const [filesOnDragged, setFilesOnDragged] = useState(false); // show dropping effect, when user is dragging files over the dropzone
   const [allUploadedFiles, setAllUploadedFiles] = useState<
     ILocalUploadedFile[]
-  >([]);
-  const [uploadStage, setUploadStage] = useState<TUploadStage>("FileUpload");
+  >([]); // all local files uploaded by user
+
   const [projectId, setProjectId] = useState<string | undefined>(
     urlProjectId ?? undefined
+  ); // project id
+  const [isTermsAgreed, setIsTermsAgreed] = useState(
+    sessionStorage.getItem("isTermsAgreed") === "true"
   );
+  const [uploadStage, setUploadStage] = useState<TUploadStage>("FileUpload");
   const fileContainerRef = React.useRef<HTMLDivElement>(null);
   let scrollTimer: ReturnType<typeof setTimeout>;
   const enablePolling = allUploadedFiles.length !== 0;
@@ -101,12 +105,19 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
       }
       if (fileRejections.length > 0) {
         const errorFiles: FileRejection[] = [];
-        fileRejections.forEach((rejection) => {
+        fileRejections.forEach((rejection, idx) => {
           errorFiles.push({
             ...rejection,
             errors: [
               {
-                message: "Invalid file type, please upload a PDF/zip file",
+                message:
+                  rejection.errors[idx].code === "file-invalid-type"
+                    ? "Invalid file type, please upload a PDF/zip file"
+                    : rejection.errors[idx].code === "file-too-large"
+                    ? `File size is greater than ${Math.round(
+                        sizeLimit / (1024 * 1024)
+                      )}Mb`
+                    : rejection.errors[idx].message,
                 code: rejection.errors[0].code,
               },
             ],

@@ -40,7 +40,10 @@ export default function FileErrorWarning() {
         }
       }}
     >
-      <DialogContent className="bg-white px-[20px] py-[14px] ">
+      <DialogContent
+        className="bg-white px-[20px] py-[14px] "
+        aria-describedby="file-error"
+      >
         <DialogHeader className="w-full items-center flex flex-row border-borderWhiteBg border-b-[1px] border-solid ">
           <DialogTitle className="font-lexend font-semibold text-[20px] text-black ">
             {currentErrorFiles.length} Error File

@@ -1,5 +1,9 @@
+import { Metadata } from "next";
 import DoxleTopMenu from "./_components/DoxleTopMenu";
-
+export const metadata: Metadata = {
+  title: "Upload Plans",
+  description: "The site to start processing plans of Doxle.",
+};
 // limitations under the License.
 export default function RootLayout({
   children,

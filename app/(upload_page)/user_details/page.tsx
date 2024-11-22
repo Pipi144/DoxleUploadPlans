@@ -1,29 +1,47 @@
-import { AnimatePresence, motion } from "framer-motion";
-
-import { MdEmail } from "react-icons/md";
-import useDetailForm from "./hooks/useDetailForm";
-import { checkEmailValid } from "@/Utilities/FunctionUtility";
 import NavHomeBtn from "@/components/DesignPatterns/NavHomeBtn";
+import { planBaseAddress } from "@/DoxleAPI";
+import { IPlanProjectDetails } from "@/Models/project";
 import { TSvgAnimatedWrapper } from "@/Models/UtilitiModels";
-import { Button } from "@/components/ui/button";
-import SuccessBanner from "@/components/DesignPatterns/SuccessBanner";
+import { motion } from "framer-motion";
+import { GetServerSideProps, NextPage } from "next";
+import { MdEmail } from "react-icons/md";
 
-const DetailForm = () => {
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState,
-    onSubmit,
-    FIELD_DESCRIPTIONS,
-    showVerifyEmail,
-    projectDetail,
-    isUpdatingDetail,
-    sendEmailTimer,
-    handleClickResendEmail,
-    showCompleteVerified,
-  } = useDetailForm();
+type ProjectPageProps = {
+  params: { projectId: string };
+};
 
+// Fetch the project data based on the `projectId` parameter
+const getProjectData = async (projectId: string) => {
+  const resp = await fetch(`${planBaseAddress}/${projectId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!resp.ok) {
+    throw new Error(`Failed to fetch project data: ${resp.statusText}`);
+  }
+
+  return resp.json();
+};
+
+const DetailForm: NextPage<ProjectPageProps> = async ({ params }) => {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   getValues,
+  //   formState,
+  //   onSubmit,
+  //   FIELD_DESCRIPTIONS,
+  //   showVerifyEmail,
+  //   projectDetail,
+  //   isUpdatingDetail,
+  //   sendEmailTimer,
+  //   handleClickResendEmail,
+  //   showCompleteVerified,
+  // } = useDetailForm();
+  const projectData = await getProjectData(params.projectId);
   const fieldWrapperClass: string =
     "w-full flex flex-col mb-[10px] tablet:mb-[14px]";
   const fieldLabelClass: string =
@@ -36,127 +54,16 @@ const DetailForm = () => {
     "text-black text-[12px] tablet:text-[14px] font-sourcecode font-normal mb-[10px]";
   const fieldInputClass: string =
     "border-[1px] border-solid border-rowBorderColor rounded-[9px] bg-[#f2f8ff] focus-visible:outline-none p-[10px] tablet:p-[14px] text-[14px] tablet:text-[16px] font-lexend font-normal ";
-  if (showCompleteVerified)
-    return <SuccessBanner text="Your email is already verified" />;
+  // if (showCompleteVerified)
+  //   return <SuccessBanner text="Your email is already verified" />;
   return (
     <motion.form
       className="max-w-[500px] p-[20px] w-full flex flex-col "
-      onSubmit={handleSubmit(onSubmit)}
+      // onSubmit={handleSubmit(onSubmit)}
       animate={{ y: [-5, 0], opacity: [0, 1] }}
       exit={{ y: [0, -5], opacity: [1, 0] }}
     >
-      {!showVerifyEmail && (
-        <>
-          <span className="text-black text-[30px] tablet:text-[40px] mb-[15px] tablet:mb-[20px] font-semibold font-lexend">
-            Your details .
-          </span>
-
-          <motion.div className={fieldWrapperClass} layout="position">
-            <label htmlFor="projectName" className={fieldLabelClass}>
-              project name
-              <span className={asteriskClass}>*</span>
-            </label>
-            <span className={fieldDescClass}>
-              {FIELD_DESCRIPTIONS.projectName}
-            </span>
-            <input
-              className={fieldInputClass}
-              type="text"
-              id="projectName"
-              {...register("projectName", { required: true })}
-            />
-            <AnimatePresence>
-              {formState.errors.projectName && (
-                <motion.span
-                  className={errorTextClass}
-                  animate={{ y: [-5, 0], opacity: [0, 1] }}
-                  exit={{ y: [0, -5], opacity: [1, 0] }}
-                >
-                  This field is required
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </motion.div>
-          <motion.div className={fieldWrapperClass} layout="position">
-            <label htmlFor="email" className={fieldLabelClass}>
-              email <span className={asteriskClass}>*</span>
-            </label>
-            <span className={fieldDescClass}>{FIELD_DESCRIPTIONS.email}</span>
-            <input
-              className={fieldInputClass}
-              type="text"
-              id="email"
-              {...register("email", {
-                validate: {
-                  require: (value) => {
-                    if (!value) {
-                      return "This field is required";
-                    } else if (!checkEmailValid(value)) {
-                      return "Invalid email address";
-                    }
-                    return true;
-                  },
-                },
-              })}
-            />
-            <AnimatePresence>
-              {formState.errors.email && (
-                <motion.span
-                  className={errorTextClass}
-                  animate={{ y: [-5, 0], opacity: [0, 1] }}
-                  exit={{ y: [0, -5], opacity: [1, 0] }}
-                >
-                  {formState.errors.email.message}
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </motion.div>
-          <motion.div className={fieldWrapperClass} layout="position">
-            <label htmlFor="name" className={fieldLabelClass}>
-              name <span className={asteriskClass}>*</span>
-            </label>
-            <span className={fieldDescClass}>{FIELD_DESCRIPTIONS.name}</span>
-            <input
-              className={fieldInputClass}
-              type="text"
-              id="name"
-              {...register("name", { required: true })}
-            />
-            <AnimatePresence>
-              {formState.errors.name && (
-                <motion.span
-                  className={errorTextClass}
-                  animate={{ y: [-5, 0], opacity: [0, 1] }}
-                  exit={{ y: [0, -5], opacity: [1, 0] }}
-                >
-                  This field is required
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </motion.div>
-
-          <span
-            className={
-              fieldDescClass + " my-[20px] font-light font-lexend text-justify"
-            }
-          >
-            Doxle requires your contact information to allow you to make
-            corrections to your project drawings and download your measurements.
-            For further details, including our privacy practices and our strong
-            commitment to safeguarding your privacy, please refer to our Privacy
-            Policy.
-          </span>
-          <Button
-            type="submit"
-            className="text-[14px] tablet:text-[16px] font-lexend font-medium text-white bg-black mt-[20px] max-w-[140px] py-[10px] px-[20px]  rounded-[4px] hover:rounded-[12px] self-center hover:opacity-80 cursor-pointer transition-all duration-200 ease-linear"
-            disabled={isUpdatingDetail}
-          >
-            {isUpdatingDetail ? "Submitting ..." : "Submit"}
-          </Button>
-        </>
-      )}
-
-      {showVerifyEmail && (
+      {false && (
         <>
           <motion.div
             className="text-[25px] tablet:text-[30px] font-lexend font-semibold text-black flex items-center self-center"
@@ -173,23 +80,23 @@ const DetailForm = () => {
             style={{ margin: "20px 0px", textAlign: "justify" }}
           >
             An email has been sent to{" "}
-            {getValues("email") || projectDetail?.userEmail} with a link to
-            verify your account. If you have not received the email after a few
-            minutes, please check your spam folder.
+            {/* {getValues("email") || projectDetail?.userEmail} with a link to
+              verify your account. If you have not received the email after a few
+              minutes, please check your spam folder. */}
           </motion.div>
 
           <VerifyingEmailBanner />
 
           <NavHomeBtn
             style={{ alignSelf: "center" }}
-            disabled={sendEmailTimer !== 0}
-            onClick={handleClickResendEmail}
+            //   disabled={sendEmailTimer !== 0}
+            //   onClick={handleClickResendEmail}
           >
-            {sendEmailTimer !== 0
-              ? `00:${
-                  sendEmailTimer >= 10 ? sendEmailTimer : `0${sendEmailTimer}`
-                }`
-              : "Resend"}
+            {/* {sendEmailTimer !== 0
+                ? `00:${
+                    sendEmailTimer >= 10 ? sendEmailTimer : `0${sendEmailTimer}`
+                  }`
+                : "Resend"} */}
           </NavHomeBtn>
         </>
       )}

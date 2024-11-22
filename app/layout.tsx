@@ -6,6 +6,7 @@ import { useState } from "react";
 import Head from "next/head";
 import { Toaster } from "@/components/ui/toaster";
 import FileErrorWarning from "./@file_error_warning/page";
+import { Metadata } from "next";
 
 export default function RootLayout({
   children,
