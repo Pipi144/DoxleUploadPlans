@@ -41,6 +41,10 @@
   .scrollbar-thin::-webkit-scrollbar-track {
     background: transparent !important;
   }
+
+  .text-red {
+    color: #ca0730;
+  }
 }
 
 html,
@@ -189,4 +193,28 @@ select {
 
 .animate-scale-up {
   animation: scaleUp 0.5s ease forwards;
+}
+
+.input-field-desc {
+  @apply text-black text-[12px] tablet:text-[14px] font-sourcecode font-normal mb-[10px];
+}
+
+.input-asterisk {
+  @apply text-red tablet:text-[12px] font-lexend font-normal mt-[3px] tablet:mt-[5px] absolute -top-[7px] text-[20px] -right-[14px] text-red;
+}
+
+.input-error {
+  @apply text-red text-[10px] tablet:text-[12px] font-lexend font-normal mt-[3px] tablet:mt-[5px];
+}
+
+.input-field {
+  @apply border-[1px] border-solid border-rowBorderColor rounded-[9px] bg-[#f2f8ff] focus-visible:outline-none p-[10px] tablet:p-[14px] text-[14px] tablet:text-[16px] font-lexend font-normal;
+}
+
+.input-label {
+  @apply text-black text-[14px] tablet:text-[16px] font-lexend font-semibold relative self-start;
+}
+
+.input-field-wrapper {
+  @apply w-full flex flex-col mb-[10px] tablet:mb-[14px];
 }

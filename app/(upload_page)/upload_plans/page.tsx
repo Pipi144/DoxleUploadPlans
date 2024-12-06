@@ -8,7 +8,6 @@ import { IoAddOutline } from "react-icons/io5";
 import UploadProvider from "../_components/hooks/UploadProvider";
 import UploadItem from "../_components/UploadItem";
 import ProcessedItem from "../_components/ProcessedItem";
-import DetailForm from "../_components/DetailForm";
 import Link from "next/link";
 import { DoxleRoutes } from "@/DoxleRoutes";
 
@@ -67,8 +66,12 @@ export default function UploadPage() {
               <Link
                 onClick={handleProcessFiles}
                 // disabled={!processableFiles}
-                href={`${DoxleRoutes.UserDetails}?projectId=${projectId}`}
-                className="bg-black disabled:bg-black active:bg-[rgba(0,0,0,0.25)]  min-w-[70px] flex flex-row items-center rounded-[4px] hover:rounded-[8px] capitalize  hover:opacity-80 text-white disabled:text-[rgba(255,255,255,0.55)] text-[12px] tablet:text-[14px] laptop:text-[16px] py-[8px] px-[16px] h-fit  transition-all duration-200 ease-linear"
+                href={`${DoxleRoutes.UserDetails}?projectId=${112233}`}
+                className={`bg-black active:bg-[rgba(0,0,0,0.25)]  min-w-[70px] flex flex-row items-center rounded-[4px] hover:rounded-[8px] capitalize  hover:opacity-80 text-[12px] tablet:text-[14px] laptop:text-[16px] py-[8px] px-[16px] h-fit  transition-all duration-200 ease-linear ${
+                  true
+                    ? "pointer-events-auto text-white "
+                    : "pointer-events-none text-[rgba(255,255,255,0.55)]"
+                }`}
               >
                 Process
               </Link>

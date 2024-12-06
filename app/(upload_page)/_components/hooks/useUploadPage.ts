@@ -46,9 +46,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const [projectId, setProjectId] = useState<string | undefined>(
     urlProjectId ?? undefined
   ); // project id
-  const [isTermsAgreed, setIsTermsAgreed] = useState(
-    sessionStorage.getItem("isTermsAgreed") === "true"
-  );
+
   const [uploadStage, setUploadStage] = useState<TUploadStage>("FileUpload");
   const fileContainerRef = React.useRef<HTMLDivElement>(null);
   let scrollTimer: ReturnType<typeof setTimeout>;
