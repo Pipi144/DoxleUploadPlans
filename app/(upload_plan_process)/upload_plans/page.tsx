@@ -10,6 +10,7 @@ import UploadItem from "../_components/UploadItem";
 import ProcessedItem from "../_components/ProcessedItem";
 import Link from "next/link";
 import { DoxleRoutes } from "@/DoxleRoutes";
+import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 
 const AnimatedButton = motion.create(Button);
 export default function UploadPage() {
@@ -26,7 +27,6 @@ export default function UploadPage() {
     allUploadedFiles,
     uploadFilesInFolder,
     projectId,
-    handleProcessFiles,
     processableFiles,
     projectFiles,
     floatingBtnVariants,
@@ -40,7 +40,7 @@ export default function UploadPage() {
           {/* User Detail Form */}
 
           {/* Bounce effect for the dialog */}
-          <motion.div
+          <AnimatedDiv
             className="w-full max-w-[700px] min-w-[300px] flex flex-col py-[30px] px-[20px] rounded-[8px] bg-white relative"
             animate={{
               y: [100, 0],
@@ -64,11 +64,9 @@ export default function UploadPage() {
               </div>
 
               <Link
-                onClick={handleProcessFiles}
-                // disabled={!processableFiles}
-                href={`${DoxleRoutes.UserDetails}?projectId=${112233}`}
+                href={`${DoxleRoutes.UserDetails}?projectId=${projectId}`}
                 className={`bg-black active:bg-[rgba(0,0,0,0.25)]  min-w-[70px] flex flex-row items-center rounded-[4px] hover:rounded-[8px] capitalize  hover:opacity-80 text-[12px] tablet:text-[14px] laptop:text-[16px] py-[8px] px-[16px] h-fit  transition-all duration-200 ease-linear ${
-                  true
+                  processableFiles
                     ? "pointer-events-auto text-white "
                     : "pointer-events-none text-[rgba(255,255,255,0.55)]"
                 }`}
@@ -84,12 +82,6 @@ export default function UploadPage() {
               onDragOver={handleFileDragEnter}
               onDragLeave={handleFileDragLeave}
               ref={fileContainerRef}
-              // onTouchStart={() => {
-              //   setTimeout(() => {
-              //     setHideAddBtn(true);
-              //   }, 500);
-              // }}
-              // onTouchEnd={() => setHideAddBtn(false)}
             >
               {/* condition when there are no files */}
               {allUploadedFiles.length === 0 && projectFiles.length === 0 && (
@@ -142,7 +134,7 @@ export default function UploadPage() {
                 <input {...getInputProps()} />
               </AnimatedButton>
             )}
-          </motion.div>
+          </AnimatedDiv>
         </AnimatePresence>
 
         <AnimatePresence>

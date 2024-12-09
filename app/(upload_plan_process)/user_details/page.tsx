@@ -5,7 +5,7 @@ import AnimatedForm from "@/components/AnimatedComponents/AnimatedForm";
 import InputField from "./_components/InputField";
 import { Button } from "@/components/ui/button";
 import { useActionState } from "react";
-import { getProjectData } from "./action";
+import { getProjectData, updateProjectData } from "./action";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 
 type ProjectPageProps = {
@@ -27,7 +27,7 @@ export const revalidate = 30;
 const DetailForm: NextPage<ProjectPageProps> = async ({ params }) => {
   const [state, action, isPending] = useActionState<TDetailState, FormData>(
     async (data, payload) => {
-      return data;
+      return (await updateProjectData(payload)) ?? data;
     },
     {}
   );

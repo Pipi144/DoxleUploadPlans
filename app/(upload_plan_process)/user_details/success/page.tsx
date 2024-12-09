@@ -1,6 +1,6 @@
 import NavHomeBtn from "@/components/DesignPatterns/NavHomeBtn";
 import React from "react";
-import VerifyingEmailBanner from "../_components/VerifyingEmailBanner";
+import VerifyingEmailBanner from "./_components/VerifyingEmailBanner";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 import { MdEmail } from "react-icons/md";
 import { NextPage } from "next";

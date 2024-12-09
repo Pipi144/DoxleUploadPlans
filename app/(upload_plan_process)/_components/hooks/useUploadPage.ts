@@ -23,15 +23,11 @@ export interface IUploadPageContextValue {
   setAllUploadedFiles: React.Dispatch<
     React.SetStateAction<ILocalUploadedFile[]>
   >;
-  uploadStage: TUploadStage;
-  setUploadStage: React.Dispatch<React.SetStateAction<TUploadStage>>;
   projectFiles: ProjectFile[];
   projectDetail: IPlanProjectDetails | undefined;
 
   refetchProjectFiles: () => void;
 }
-
-type TUploadStage = "FileUpload" | "DetailEntry" | "Complete";
 const sizeLimit = 20971520;
 const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const [hideAddBtn, setHideAddBtn] = useState(false); // floating add btn control
@@ -46,8 +42,6 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const [projectId, setProjectId] = useState<string | undefined>(
     urlProjectId ?? undefined
   ); // project id
-
-  const [uploadStage, setUploadStage] = useState<TUploadStage>("FileUpload");
   const fileContainerRef = React.useRef<HTMLDivElement>(null);
   let scrollTimer: ReturnType<typeof setTimeout>;
   const enablePolling = allUploadedFiles.length !== 0;
@@ -57,7 +51,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   });
   const projectDetailQuery = useRetrieveProjectDetails({
     projectId,
-    enablePolling: uploadStage === "DetailEntry",
+    enablePolling: true,
   });
   const { createProjectQuery } = useMutateProject({
     onSuccessCb: (data) => setProjectId(data.projectId),
@@ -227,9 +221,6 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
       console.log("ERROR:", error);
     }
   };
-  const handleProcessFiles = () => {
-    setUploadStage("DetailEntry");
-  };
   const floatingBtnVariants: Variants = {
     initial: {
       opacity: 1,
@@ -243,13 +234,12 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     () => ({
       allUploadedFiles,
       setAllUploadedFiles,
-      uploadStage,
-      setUploadStage,
+
       projectFiles,
       projectDetail,
       refetchProjectFiles: projectFileQuery.refetch,
     }),
-    [allUploadedFiles, uploadStage, projectFiles, projectDetail]
+    [allUploadedFiles, projectFiles, projectDetail]
   );
 
   useEffect(() => {
@@ -308,7 +298,6 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     contextVal,
     allUploadedFiles,
     projectId,
-    handleProcessFiles,
     processableFiles,
     projectFiles,
     isGettingProjectDetails: projectDetailQuery.isLoading,

@@ -10,18 +10,23 @@ import { DoxleRoutes } from "@/DoxleRoutes";
 export const getProjectData = async (
   projectId: string
 ): Promise<IPlanProjectDetails | undefined> => {
-  const resp = await fetch(`${planBaseAddress}/${projectId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  try {
+    const resp = await fetch(`${planBaseAddress}/${projectId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-cache",
+    });
 
-  if (!resp.ok) {
-    return;
+    if (!resp.ok) {
+      throw new Error("Failed to get project details");
+    }
+
+    return resp.json();
+  } catch (error) {
+    throw new Error("Failed to get project details");
   }
-
-  return resp.json();
 };
 const formSchema = z.object({
   projectName: z.string().min(5, "Project name must be at least 5 characters"),
@@ -62,7 +67,7 @@ export const updateProjectData = async (
         "Content-Type": "application/json",
       },
     });
-    console.log(resp);
+
     if (!resp.ok) {
       return {
         errorServer: ["Failed to update project data:" + resp.statusText],
