@@ -4,11 +4,12 @@ import VerifyingEmailBanner from "./_components/VerifyingEmailBanner";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 import { MdEmail } from "react-icons/md";
 import { NextPage } from "next";
+import ResendButton from "./_components/ResendButton";
+type Props = { searchParams: { email?: string; projectId?: string } };
 
-type Props = { searchParams: { email?: string } };
+const SuccessPage: NextPage<Props> = async (props) => {
+  const { email, projectId } = props.searchParams;
 
-const SuccessPage: NextPage<Props> = async ({ searchParams }) => {
-  const email = searchParams.email;
   return (
     <>
       <AnimatedDiv
@@ -31,17 +32,7 @@ const SuccessPage: NextPage<Props> = async ({ searchParams }) => {
 
       <VerifyingEmailBanner />
 
-      <NavHomeBtn
-        style={{ alignSelf: "center" }}
-        // disabled={sendEmailTimer !== 0}
-        // onClick={handleClickResendEmail}
-      >
-        {/* {sendEmailTimer !== 0
-              ? `00:${
-                  sendEmailTimer >= 10 ? sendEmailTimer : `0${sendEmailTimer}`
-                }`
-              : "Resend"} */}
-      </NavHomeBtn>
+      <ResendButton projectId={projectId ?? ""} />
     </>
   );
 };

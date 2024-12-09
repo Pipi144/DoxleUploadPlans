@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 import { CgRedo } from "react-icons/cg";
 import { AnimatePresence, motion } from "framer-motion";
 import { ILocalUploadedFile } from "@/Models/FileUpload";
-import useUploadItem from "./hooks/useUploadItem";
+import useLocalItem from "./hooks/useLocalItem";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 
@@ -14,9 +14,9 @@ type Props = {
   projectId: string | undefined;
 };
 const AnimatedButton = motion.create(Button);
-const UploadItem = ({ item, projectId }: Props) => {
+const LocalItem = ({ item, projectId }: Props) => {
   const { progress, estimatedTime, handleCancelFile, handleRetry } =
-    useUploadItem({ item, projectId });
+    useLocalItem({ item, projectId });
 
   const bannerColor = `rgba(46,103,254,${
     item.fileState === "Completed"
@@ -141,4 +141,4 @@ const UploadItem = ({ item, projectId }: Props) => {
   );
 };
 
-export default memo(UploadItem);
+export default memo(LocalItem);

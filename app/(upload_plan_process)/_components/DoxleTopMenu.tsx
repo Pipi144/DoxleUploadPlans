@@ -1,8 +1,8 @@
 "use client";
 import DoxleIconPlain from "@/components/DoxleIcons";
-import { openDoxleHelpEmail } from "@/Utilities/FunctionUtility";
 import Link from "next/link";
 import React from "react";
+import DoxleTopMenuEmailBtn from "./DoxleTopMenuEmailBtn";
 
 const DoxleTopMenu = () => {
   return (
@@ -15,12 +15,7 @@ const DoxleTopMenu = () => {
         />
       </Link>
 
-      <span
-        onClick={openDoxleHelpEmail}
-        className="text-black text-[14px] font-lexend font-semibold cursor-pointer hover:text-doxleColor transition-all duration-200 ease-linear"
-      >
-        help@doxle.com
-      </span>
+      <DoxleTopMenuEmailBtn />
     </div>
   );
 };

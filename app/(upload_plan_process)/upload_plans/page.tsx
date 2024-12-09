@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 import DroppingEffect from "../_components/DroppingEffect";
 import { IoAddOutline } from "react-icons/io5";
 import UploadProvider from "../_components/hooks/UploadProvider";
-import UploadItem from "../_components/UploadItem";
-import ProcessedItem from "../_components/ProcessedItem";
 import Link from "next/link";
 import { DoxleRoutes } from "@/DoxleRoutes";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
+import ServerItem from "../_components/ServerItem";
+import LocalItem from "../_components/LocalItem";
 
 const AnimatedButton = motion.create(Button);
 export default function UploadPage() {
@@ -107,7 +107,7 @@ export default function UploadPage() {
                     )
                 )
                 .map((item, idx) => (
-                  <UploadItem key={idx} item={item} projectId={projectId} />
+                  <LocalItem key={idx} item={item} projectId={projectId} />
                 ))}
               {/* project files coming from the server */}
               {projectFiles
@@ -118,7 +118,7 @@ export default function UploadPage() {
                     (f.status === "Failed" && f.fileType === "application/zip")
                 )
                 .map((item, idx) => (
-                  <ProcessedItem key={idx} item={item} />
+                  <ServerItem key={idx} item={item} />
                 ))}
             </div>
             {(allUploadedFiles.length > 0 || projectFiles.length > 0) && (

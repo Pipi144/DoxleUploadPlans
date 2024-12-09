@@ -14,8 +14,10 @@ type Props = {
   projectId: string | undefined;
 };
 
-const useUploadItem = ({ item, projectId }: Props) => {
+const useLocalItem = ({ item, projectId }: Props) => {
   const { setAllUploadedFiles } = useUploadPageContext();
+
+  // change status to processing when upload starts
   const onStartUpload = useCallback(() => {
     setAllUploadedFiles(
       produce((draft) => {
@@ -28,6 +30,8 @@ const useUploadItem = ({ item, projectId }: Props) => {
       })
     );
   }, []);
+
+  // change status to finalising when upload completes
   const onCompletePreparing = useCallback(() => {
     setAllUploadedFiles(
       produce((draft) => {
@@ -39,6 +43,8 @@ const useUploadItem = ({ item, projectId }: Props) => {
       })
     );
   }, []);
+
+  // change status to cancelled when upload is cancelled
   const onCancelUpload = useCallback(() => {
     setAllUploadedFiles(
       produce((draft) => {
@@ -50,6 +56,8 @@ const useUploadItem = ({ item, projectId }: Props) => {
       })
     );
   }, []);
+
+  // change status to completed when upload is successful
   const onSuccessUpload = useCallback(() => {
     setAllUploadedFiles(
       produce((draft) => {
@@ -67,6 +75,8 @@ const useUploadItem = ({ item, projectId }: Props) => {
       })
     );
   }, []);
+
+  // change status to failed when upload fails
   const onErrorUpload = useCallback(() => {
     // if (item.fileState === 'Processing')
     setAllUploadedFiles(
@@ -97,6 +107,7 @@ const useUploadItem = ({ item, projectId }: Props) => {
     onStartingUpload: onStartUpload,
   });
 
+  // get presigned url for file upload, when the api for presigned url success=> upload the file
   const getPresignedUrlMutation = useGetAWSPresignedUrl({
     onSuccessGetUrl: (url) => {
       uploadFileMutate({
@@ -114,10 +125,13 @@ const useUploadItem = ({ item, projectId }: Props) => {
     onErrorGetUrl: onErrorUpload,
   });
 
+  // check if file is in uploading state
   const isUploadingState =
     item.fileState !== "Completed" &&
     item.fileState !== "Failed" &&
     item.fileState !== "Cancelled";
+
+  // check if file is in getting presigned url state
   const isGettingPresignedURL =
     useIsMutating({
       mutationKey: getPlanMutateKey("getAwsUrl"),
@@ -126,6 +140,7 @@ const useUploadItem = ({ item, projectId }: Props) => {
         q.state.status === "pending",
     }) > 0;
 
+  // cancel file upload
   const handleCancelFile = () => {
     if (
       item.fileState !== "Completed" &&
@@ -145,6 +160,8 @@ const useUploadItem = ({ item, projectId }: Props) => {
 
     deleteFileMutate(item.fileTempId);
   };
+
+  // retry file upload
   const handleRetry = () => {
     setAllUploadedFiles(
       produce((draft) => {
@@ -192,4 +209,4 @@ const useUploadItem = ({ item, projectId }: Props) => {
   };
 };
 
-export default useUploadItem;
+export default useLocalItem;
