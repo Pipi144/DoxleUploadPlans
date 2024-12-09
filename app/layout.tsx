@@ -2,11 +2,17 @@ import "./globals.css";
 import Head from "next/head";
 import { Toaster } from "@/components/ui/toaster";
 import ReactQueryProvider from "@/Providers/ReactQueryProvider";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Doxle",
   description: "Start your building with Doxle.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  userScalable: false,
 };
 export default function RootLayout({
   children,
@@ -18,12 +24,6 @@ export default function RootLayout({
   return (
     <ReactQueryProvider>
       <html lang="en">
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, user-scalable=no"
-          />
-        </Head>
         <body className="scrollbar-thin">
           {children}
 
