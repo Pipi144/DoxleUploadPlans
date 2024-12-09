@@ -37,8 +37,6 @@ export default function UploadPage() {
     <>
       <UploadProvider {...contextVal}>
         <AnimatePresence>
-          {/* User Detail Form */}
-
           {/* Bounce effect for the dialog */}
           <AnimatedDiv
             className="w-full max-w-[700px] min-w-[300px] flex flex-col py-[30px] px-[20px] rounded-[8px] bg-white relative"

@@ -1,16 +1,15 @@
 "use client";
 
-import { NextPage } from "next";
 import AnimatedForm from "@/components/AnimatedComponents/AnimatedForm";
 import InputField from "./_components/InputField";
 import { Button } from "@/components/ui/button";
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { getProjectData, updateProjectData } from "./action";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
+import React from "react";
+import { IPlanProjectDetails } from "@/Models/project";
+import { useParams, useSearchParams } from "next/navigation";
 
-type ProjectPageProps = {
-  params: { projectId: string };
-};
 export type TDetailState = {
   projectName?: string;
   email?: string;
@@ -22,25 +21,49 @@ export type TDetailState = {
 };
 // Fetch the project data based on the `projectId` parameter
 
-export const dynamicParams = true;
-export const revalidate = 30;
-const DetailForm: NextPage<ProjectPageProps> = async ({ params }) => {
+const DetailForm = () => {
   const [state, action, isPending] = useActionState<TDetailState, FormData>(
     async (data, payload) => {
       return (await updateProjectData(payload)) ?? data;
     },
     {}
   );
+  const [projectDetails, setProjectDetails] = useState<
+    IPlanProjectDetails | undefined
+  >(undefined);
+  const searchParams = useSearchParams();
+  const projectId = searchParams.get("projectId");
+  useEffect(() => {
+    const fetchProjectData = async () => {
+      if (!projectId) {
+        throw new Error("Project id not found");
+      }
 
-  const resp = await getProjectData(params.projectId);
+      try {
+        const data = await getProjectData(projectId);
+        if (!data) {
+          throw new Error("Project data not found");
+        }
+        setProjectDetails(data); // Set the project details in the state
+      } catch (error) {
+        console.error("Error fetching project data:", error);
+      }
+    };
+
+    fetchProjectData();
+  }, [projectId]);
+  useEffect(() => {
+    console.log("PROJECT DETAILS:", projectDetails);
+  }, [projectDetails]);
+
   return (
     <AnimatedForm
-      className="max-w-[500px] p-[20px] w-full flex flex-col "
+      className="max-w-[600px] p-[20px] w-full flex flex-col "
       action={action}
       animate={{ y: [-5, 0], opacity: [0, 1] }}
       exit={{ y: [0, -5], opacity: [1, 0] }}
     >
-      <input type="hidden" name="projectId" value={params.projectId} />
+      <input type="hidden" name="projectId" value={projectId ?? ""} />
       <span className="text-black text-[30px] tablet:text-[40px] mb-[15px] tablet:mb-[20px] font-semibold font-lexend">
         Your details .
       </span>
@@ -50,7 +73,7 @@ const DetailForm: NextPage<ProjectPageProps> = async ({ params }) => {
         id="projectName"
         name="projectName"
         required
-        defaultValue={state.projectName ?? resp?.projectName}
+        defaultValue={state.projectName ?? projectDetails?.projectName}
         errors={state.errorProjectName}
       />
       <InputField
@@ -59,7 +82,7 @@ const DetailForm: NextPage<ProjectPageProps> = async ({ params }) => {
         id="email"
         name="email"
         required
-        defaultValue={state.email ?? resp?.userEmail ?? ""}
+        defaultValue={state.email ?? projectDetails?.userEmail ?? ""}
         errors={state.errorEmail}
       />
       <InputField
@@ -68,13 +91,13 @@ const DetailForm: NextPage<ProjectPageProps> = async ({ params }) => {
         id="name"
         name="name"
         required
-        defaultValue={state.name ?? resp?.userName ?? ""}
+        defaultValue={state.name ?? projectDetails?.userName ?? ""}
         errors={state.errorName}
       />
 
       {state.errorServer && (
         <AnimatedDiv
-          className="input-error"
+          className="input-error text-center"
           animate={{
             x: [-5, 0],
             opacity: [0, 1],
@@ -105,3 +128,5 @@ const DetailForm: NextPage<ProjectPageProps> = async ({ params }) => {
 };
 
 export default DetailForm;
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;

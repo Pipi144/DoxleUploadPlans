@@ -17,15 +17,19 @@ export const getProjectData = async (
         "Content-Type": "application/json",
       },
       cache: "no-cache",
+      next: {
+        revalidate: 0,
+      },
     });
 
     if (!resp.ok) {
-      throw new Error("Failed to get project details");
+      console.log("RESPONSE FAILED:", resp);
+      return;
     }
 
     return resp.json();
   } catch (error) {
-    throw new Error("Failed to get project details");
+    console.error("ERROR getProjectData:", error);
   }
 };
 const formSchema = z.object({
@@ -51,7 +55,7 @@ export const updateProjectData = async (
   try {
     // using validation schema to validate form data
     const validation = formSchema.safeParse({ projectName, email, name });
-    if (!validation.success) {
+    if (!validation.success)
       return {
         projectName,
         email,
@@ -60,21 +64,26 @@ export const updateProjectData = async (
         errorName: findErrors("name", validation.error.errors),
         errorProjectName: findErrors("projectName", validation.error.errors),
       };
-    }
+
+    const body = JSON.stringify({ projectName, email, name });
+
+    // Perform the PATCH request
     const resp = await fetch(`${planBaseAddress}/${projectId}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", // Specify the JSON content type
       },
+      body, // Attach the body as JSON
     });
 
     if (!resp.ok) {
+      console.log("RESPONSE FAILED:", resp);
       return {
-        errorServer: ["Failed to update project data:" + resp.statusText],
+        errorServer: ["Failed to update project data: " + resp.statusText],
       };
     }
   } catch (error) {
-    return { errorServer: ["Failed to update project data:" + error] };
+    return { errorServer: ["Failed to update project data: " + error] };
   }
   // redirect to success page
   redirect(DoxleRoutes.SuccessPage + "?email=" + email);

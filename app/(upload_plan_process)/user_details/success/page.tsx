@@ -5,13 +5,14 @@ import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 import { MdEmail } from "react-icons/md";
 import { NextPage } from "next";
 
-type Props = { params: { email?: string } };
+type Props = { searchParams: { email?: string } };
 
-const SuccessPage: NextPage<Props> = async ({ params }) => {
+const SuccessPage: NextPage<Props> = async ({ searchParams }) => {
+  const email = searchParams.email;
   return (
     <>
       <AnimatedDiv
-        className="text-[25px] tablet:text-[30px] font-lexend font-semibold text-black flex items-center self-center"
+        className="text-[25px] tablet:text-[30px] font-lexend font-semibold text-black flex items-center self-center max-w-5xl"
         animate={{ x: [-400, 0], opacity: [0, 1] }}
         transition={{ duration: 0.5 }}
       >
@@ -19,13 +20,12 @@ const SuccessPage: NextPage<Props> = async ({ params }) => {
         We have sent a mail
       </AnimatedDiv>
       <AnimatedDiv
-        className="input-field-desc"
+        className="input-field-desc max-w-5xl text-center my-[20px]"
         animate={{ x: [400, 0], opacity: [0, 1] }}
         transition={{ duration: 0.5 }}
-        style={{ margin: "20px 0px", textAlign: "justify" }}
       >
-        An email has been sent to {params.email ?? "Unknown email"} with a link
-        to verify your account. If you have not received the email after a few
+        An email has been sent to {email ?? "Unknown email"} with a link to
+        verify your account. If you have not received the email after a few
         minutes, please check your spam folder.
       </AnimatedDiv>
 

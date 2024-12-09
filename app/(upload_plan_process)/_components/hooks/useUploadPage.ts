@@ -47,11 +47,11 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const enablePolling = allUploadedFiles.length !== 0;
   const projectFileQuery = useRetrieveProjectFiles({
     projectId,
-    enablePolling: enablePolling,
+    enablePolling,
   });
   const projectDetailQuery = useRetrieveProjectDetails({
     projectId,
-    enablePolling: true,
+    enablePolling: false,
   });
   const { createProjectQuery } = useMutateProject({
     onSuccessCb: (data) => setProjectId(data.projectId),
