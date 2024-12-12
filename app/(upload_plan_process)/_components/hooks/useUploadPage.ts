@@ -62,7 +62,8 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     () => projectFileQuery.data?.data ?? [],
     [projectFileQuery.data?.data]
   );
-  const processedPreviously = projectDetail?.processClicked && projectDetail?.emailVerified;
+  const processedPreviously =
+    projectDetail?.processClicked && projectDetail?.emailVerified;
   const processableFiles = projectFiles.length > 0;
 
   const { addCurrentErrorFiles } = useDoxleErrorWarningStore(
