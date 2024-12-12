@@ -62,6 +62,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     () => projectFileQuery.data?.data ?? [],
     [projectFileQuery.data?.data]
   );
+  const processedPreviously = projectDetail?.processClicked && projectDetail?.emailVerified;
   const processableFiles = projectFiles.length > 0;
 
   const { addCurrentErrorFiles } = useDoxleErrorWarningStore(
@@ -308,7 +309,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     handleFileFolderDrop,
     pendingFolderUpload,
     setPendingFolderUpload,
-
+    processedPreviously,
     uploadFilesInFolder,
     contextVal,
     allUploadedFiles,

@@ -26,6 +26,7 @@ export default function UploadPage() {
     contextVal,
     allUploadedFiles,
     uploadFilesInFolder,
+    processedPreviously,
     projectId,
     processableFiles,
     projectFiles,
@@ -69,7 +70,7 @@ export default function UploadPage() {
                     : "pointer-events-none text-[rgba(255,255,255,0.55)]"
                 }`}
               >
-                Process
+                {processedPreviously ? 'Reprocess' : 'Process'}
               </Link>
             </div>
 
