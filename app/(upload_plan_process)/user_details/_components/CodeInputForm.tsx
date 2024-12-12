@@ -1,17 +1,16 @@
 "use client";
-import React, { useActionState, useRef, useState } from "react";
+import React, { useActionState, useRef } from "react";
 import CodeInput from "./CodeInput";
 import { Button } from "@/components/ui/button";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 import { verifyCode } from "../../action";
 import ResendCodeBtn from "./ResendCodeBtn";
 
-type Props = {};
 export type TCodeInputState = {
   errors?: string[];
   isExpired?: boolean;
 };
-const CodeInputForm = (props: Props) => {
+const CodeInputForm = () => {
   const [state, action, isPending] = useActionState<TCodeInputState, FormData>(
     async (data, payload) => {
       return (await verifyCode(payload)) ?? data;

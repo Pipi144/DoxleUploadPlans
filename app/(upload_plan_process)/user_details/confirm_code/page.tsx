@@ -6,15 +6,15 @@ import { getProjectData } from "../../action";
 import { redirect } from "next/navigation";
 import { DoxleRoutes } from "@/DoxleRoutes";
 
-type Props = {};
-
-const CodeConfirm = ({}: Props) => {
+const CodeConfirm = () => {
   const checkVerifiedStatus = async () => {
     try {
       const resp = await getProjectData();
 
       if (resp?.emailVerified) redirect(DoxleRoutes.VerifySuccessPage);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error fetching project data checkVerifiedStatus:", error);
+    }
   };
   useEffect(() => {
     checkVerifiedStatus();

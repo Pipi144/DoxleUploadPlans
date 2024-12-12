@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import DoxleTopMenu from "./_components/DoxleTopMenu";
 
 // limitations under the License.

@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import { resendVerification } from "../../action";
 import { useToast } from "@/hooks/use-toast";
 
-type Props = {};
-
-const ResendCodeBtn = (props: Props) => {
+const ResendCodeBtn = () => {
   const [isPending, setIsPending] = useState(false);
   const [isCodeSent, setIsCodeSent] = useState(false);
   const { toast } = useToast();
@@ -23,11 +21,11 @@ const ResendCodeBtn = (props: Props) => {
           variant: "destructive",
           duration: 2000,
         });
-    } catch (error: any) {
+    } catch (error) {
       console.log("ERROR in ResendCodeBtn:", error);
       toast({
         title: "Error",
-        description: error,
+        description: "failed to resend code",
         variant: "destructive",
         duration: 2000,
       });

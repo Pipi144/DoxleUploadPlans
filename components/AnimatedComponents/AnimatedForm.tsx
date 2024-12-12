@@ -7,5 +7,5 @@ const AnimatedForm = forwardRef<HTMLFormElement, HTMLMotionProps<"form">>(
     return <motion.form ref={ref} {...props} />;
   }
 );
-
+AnimatedForm.displayName = "AnimatedForm";
 export default AnimatedForm;

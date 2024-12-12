@@ -17,7 +17,7 @@ interface IGetAWSUrlProps {
   onGetPresignedUrl?: () => void;
 }
 
-interface IGetAWSUrlFncParams {
+export interface IGetAWSUrlFncParams {
   fileName: string;
   fileType: string;
   fileSize: number;

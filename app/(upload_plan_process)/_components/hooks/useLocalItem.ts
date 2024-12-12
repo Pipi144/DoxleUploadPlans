@@ -5,6 +5,7 @@ import { ILocalUploadedFile } from "@/Models/FileUpload";
 import { useUploadPageContext } from "./UploadProvider";
 import {
   getPlanMutateKey,
+  IGetAWSUrlFncParams,
   useAWSMutatePlan,
   useGetAWSPresignedUrl,
 } from "../../../../services/useUploadPlan";
@@ -136,7 +137,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
     useIsMutating({
       mutationKey: getPlanMutateKey("getAwsUrl"),
       predicate: (q) =>
-        (q.state.variables as any).fileTempId === item.fileTempId &&
+        (q.state.variables as IGetAWSUrlFncParams).fileId === item.fileTempId &&
         q.state.status === "pending",
     }) > 0;
 

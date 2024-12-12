@@ -7,5 +7,5 @@ const AnimatedDiv = forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
     return <motion.div ref={ref} {...props} />;
   }
 );
-
+AnimatedDiv.displayName = "AnimatedDiv";
 export default AnimatedDiv;

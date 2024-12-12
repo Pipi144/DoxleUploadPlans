@@ -30,5 +30,5 @@ const CodeInput = forwardRef<HTMLInputElement, Props>(
     );
   }
 );
-
+CodeInput.displayName = "CodeInput";
 export default CodeInput;

@@ -1,5 +1,4 @@
 import "./globals.css";
-import Head from "next/head";
 import { Toaster } from "@/components/ui/toaster";
 import ReactQueryProvider from "@/Providers/ReactQueryProvider";
 import { Metadata, Viewport } from "next";

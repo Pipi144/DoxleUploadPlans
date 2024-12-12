@@ -8,7 +8,6 @@ import { getProjectData, updateProjectData } from "../action";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 import React from "react";
 import { IPlanProjectDetails } from "@/Models/project";
-import { useRouter } from "next/router";
 
 export type TDetailState = {
   projectName?: string;
