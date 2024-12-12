@@ -21,7 +21,7 @@ const ResendCodeBtn = (props: Props) => {
           title: "Error",
           description: response.error,
           variant: "destructive",
-          duration: 1000,
+          duration: 2000,
         });
     } catch (error: any) {
       console.log("ERROR in ResendCodeBtn:", error);
@@ -29,7 +29,7 @@ const ResendCodeBtn = (props: Props) => {
         title: "Error",
         description: error,
         variant: "destructive",
-        duration: 1000,
+        duration: 2000,
       });
       setIsPending(false);
     }
