@@ -8,7 +8,7 @@ import { getProjectData, updateProjectData } from "../action";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 import React from "react";
 import { IPlanProjectDetails } from "@/Models/project";
-import { useParams, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 
 export type TDetailState = {
   projectName?: string;
@@ -22,15 +22,15 @@ export type TDetailState = {
 // Fetch the project data based on the `projectId` parameter
 
 const DetailForm = () => {
-  const [state, action, isPending] = useActionState<TDetailState, FormData>(
-    async (data, payload) => {
-      return (await updateProjectData(payload)) ?? data;
-    },
-    {}
-  );
   const [projectDetails, setProjectDetails] = useState<
     IPlanProjectDetails | undefined
   >(undefined);
+  const [state, action, isPending] = useActionState<TDetailState, FormData>(
+    async (data, payload) => {
+      return (await updateProjectData(projectDetails, payload)) ?? data;
+    },
+    {}
+  );
   useEffect(() => {
     const fetchProjectData = async () => {
       try {

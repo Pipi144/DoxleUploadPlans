@@ -106,6 +106,7 @@ const findErrors = (fieldName: string, errors: z.ZodIssue[]) => {
 };
 //update user details (project data)
 export const updateProjectData = async (
+  projectDetails: IPlanProjectDetails | undefined,
   data: FormData
 ): Promise<TDetailState | undefined> => {
   // extract data from form data
@@ -161,8 +162,11 @@ export const updateProjectData = async (
 
   // revalidate tag to update project detail api call
   revalidateTag(`getProjectData-${projectId}`);
+
+  // if email is verified redirect to verify success page
+  if (projectDetails?.emailVerified) redirect(DoxleRoutes.VerifySuccessPage);
   // redirect to confirm code page
-  redirect(DoxleRoutes.ConfirmCode);
+  else redirect(DoxleRoutes.ConfirmCode);
 };
 
 // Resend verification email
