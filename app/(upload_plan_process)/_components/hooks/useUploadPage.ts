@@ -14,10 +14,12 @@ import useRetrieveProjectFiles, {
 } from "../../../../services/ProjectFilesQuery";
 import { IPlanProjectDetails } from "@/Models/project";
 import { IFolderUploadDetails, TAllowedFileType } from "@/Models/UtilitiModels";
-import useMutateProject from "../../../../services/ProjectQueryHooks";
 import { useDoxleErrorWarningStore } from "@/GeneralStores/useDoxleErrorWarningStore";
 import useProcessFileDrop from "./useProcessFileDrop";
-
+import { getCookie, setCookie } from "cookies-next/client";
+import { COOKIE_KEYS } from "@/app/Cookies";
+import { createProject } from "../../action";
+import { useToast } from "@/hooks/use-toast";
 export interface IUploadPageContextValue {
   allUploadedFiles: ILocalUploadedFile[];
   setAllUploadedFiles: React.Dispatch<
@@ -43,6 +45,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     urlProjectId ?? undefined
   ); // project id
   const fileContainerRef = React.useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
   let scrollTimer: ReturnType<typeof setTimeout>;
   const enablePolling = allUploadedFiles.length !== 0;
   const projectFileQuery = useRetrieveProjectFiles({
@@ -53,9 +56,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     projectId,
     enablePolling: false,
   });
-  const { createProjectQuery } = useMutateProject({
-    onSuccessCb: (data) => setProjectId(data.projectId),
-  });
+
   const projectDetail = projectDetailQuery.data?.data;
   const projectFiles = useMemo(
     () => projectFileQuery.data?.data ?? [],
@@ -242,17 +243,31 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     [allUploadedFiles, projectFiles, projectDetail]
   );
 
+  const createNewProject = async () => {
+    try {
+      const result = await createProject({
+        projectId: uuid(),
+        projectName: "New Project",
+        createStorey: false,
+      });
+
+      if (result) {
+        setProjectId(result.projectId);
+      } else toast({ title: "Error", description: "Error creating project" });
+    } catch (error) {
+      console.error("ERROR createProject:", error);
+    }
+  };
   useEffect(() => {
-    const storageProjectId = window.localStorage.getItem("projectId");
-    if (urlProjectId) window.localStorage.setItem("projectId", urlProjectId);
+    const storageProjectId = getCookie(COOKIE_KEYS.ProjectId);
+
+    if (urlProjectId)
+      setCookie(COOKIE_KEYS.ProjectId, urlProjectId, {
+        maxAge: 60 * 60 * 24 * 7,
+      });
     else if (!projectId) {
       if (storageProjectId) setProjectId(storageProjectId);
-      else if (!createProjectQuery.isPending)
-        createProjectQuery.mutate({
-          projectId: uuid(),
-          projectName: "New Project",
-          createStorey: false,
-        });
+      else createNewProject();
     }
   }, []);
 

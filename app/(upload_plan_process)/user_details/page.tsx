@@ -1,24 +1,10 @@
-// Copyright 2024 selvinkamal
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-//     https://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 "use client";
 
 import AnimatedForm from "@/components/AnimatedComponents/AnimatedForm";
 import InputField from "./_components/InputField";
 import { Button } from "@/components/ui/button";
 import { useActionState, useEffect, useState } from "react";
-import { getProjectData, updateProjectData } from "./action";
+import { getProjectData, updateProjectData } from "../action";
 import AnimatedDiv from "@/components/AnimatedComponents/AnimatedDiv";
 import React from "react";
 import { IPlanProjectDetails } from "@/Models/project";
@@ -45,16 +31,10 @@ const DetailForm = () => {
   const [projectDetails, setProjectDetails] = useState<
     IPlanProjectDetails | undefined
   >(undefined);
-  const searchParams = useSearchParams();
-  const projectId = searchParams.get("projectId");
   useEffect(() => {
     const fetchProjectData = async () => {
-      if (!projectId) {
-        throw new Error("Project id not found");
-      }
-
       try {
-        const data = await getProjectData(projectId);
+        const data = await getProjectData();
         if (!data) {
           throw new Error("Project data not found");
         }
@@ -65,10 +45,7 @@ const DetailForm = () => {
     };
 
     fetchProjectData();
-  }, [projectId]);
-  useEffect(() => {
-    console.log("PROJECT DETAILS:", projectDetails);
-  }, [projectDetails]);
+  }, []);
 
   return (
     <AnimatedForm
@@ -77,7 +54,6 @@ const DetailForm = () => {
       animate={{ y: [-5, 0], opacity: [0, 1] }}
       exit={{ y: [0, -5], opacity: [1, 0] }}
     >
-      <input type="hidden" name="projectId" value={projectId ?? ""} />
       <span className="text-black text-[30px] tablet:text-[40px] mb-[15px] tablet:mb-[20px] font-semibold font-lexend">
         Your details .
       </span>
@@ -142,5 +118,3 @@ const DetailForm = () => {
 };
 
 export default DetailForm;
-export const dynamic = "force-dynamic";
-export const dynamicParams = true;

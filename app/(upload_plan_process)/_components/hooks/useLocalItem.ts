@@ -136,7 +136,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
     useIsMutating({
       mutationKey: getPlanMutateKey("getAwsUrl"),
       predicate: (q) =>
-        q.state.variables.fileTempId === item.fileTempId &&
+        (q.state.variables as any).fileTempId === item.fileTempId &&
         q.state.status === "pending",
     }) > 0;
 

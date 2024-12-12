@@ -62,7 +62,7 @@ export default function UploadPage() {
               </div>
 
               <Link
-                href={`${DoxleRoutes.UserDetails}?projectId=${projectId}`}
+                href={DoxleRoutes.UserDetails}
                 className={`bg-black active:bg-[rgba(0,0,0,0.25)]  min-w-[70px] flex flex-row items-center rounded-[4px] hover:rounded-[8px] capitalize  hover:opacity-80 text-[12px] tablet:text-[14px] laptop:text-[16px] py-[8px] px-[16px] h-fit  transition-all duration-200 ease-linear ${
                   processableFiles
                     ? "pointer-events-auto text-white "

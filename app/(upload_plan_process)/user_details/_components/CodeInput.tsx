@@ -24,6 +24,7 @@ const CodeInput = forwardRef<HTMLInputElement, Props>(
         {...props}
         maxLength={1}
         type="number"
+        min={0}
         ref={ref}
       />
     );
