@@ -21,11 +21,9 @@ import { COOKIE_KEYS } from "@/app/Cookies";
 import { createProject } from "../../action";
 import { useToast } from "@/hooks/use-toast";
 export interface IUploadPageContextValue {
-  allUploadedFiles: ILocalUploadedFile[];
-  setAllUploadedFiles: React.Dispatch<
-    React.SetStateAction<ILocalUploadedFile[]>
-  >;
-  projectFiles: ProjectFile[];
+  localFiles: ILocalUploadedFile[];
+  setLocalFiles: React.Dispatch<React.SetStateAction<ILocalUploadedFile[]>>;
+  serverFiles: ProjectFile[];
   projectDetail: IPlanProjectDetails | undefined;
 
   refetchProjectFiles: () => void;
@@ -37,20 +35,18 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     IFolderUploadDetails[] | null
   >(null); // folder upload control to handle dropped folders
   const [filesOnDragged, setFilesOnDragged] = useState(false); // show dropping effect, when user is dragging files over the dropzone
-  const [allUploadedFiles, setAllUploadedFiles] = useState<
-    ILocalUploadedFile[]
-  >([]); // all local files uploaded by user
+  const [localFiles, setLocalFiles] = useState<ILocalUploadedFile[]>([]); // all local files uploaded by user
 
   const [projectId, setProjectId] = useState<string | undefined>(
     urlProjectId ?? undefined
   ); // project id
   const fileContainerRef = React.useRef<HTMLDivElement>(null);
-  const { toast } = useToast();
+  const { toast } = useToast(); //notification
   let scrollTimer: ReturnType<typeof setTimeout>;
-  const enablePolling = allUploadedFiles.length !== 0;
+
   const projectFileQuery = useRetrieveProjectFiles({
     projectId,
-    enablePolling,
+    enablePolling: localFiles.length !== 0,
   });
   const projectDetailQuery = useRetrieveProjectDetails({
     projectId,
@@ -58,13 +54,13 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   });
 
   const projectDetail = projectDetailQuery.data?.data;
-  const projectFiles = useMemo(
+  const serverFiles = useMemo(
     () => projectFileQuery.data?.data ?? [],
     [projectFileQuery.data?.data]
   );
   const processedPreviously =
     projectDetail?.processClicked && projectDetail?.emailVerified;
-  const processableFiles = projectFiles.length > 0;
+  const processableFiles = serverFiles.length > 0;
 
   const { addCurrentErrorFiles } = useDoxleErrorWarningStore(
     useShallow((state) => ({
@@ -81,7 +77,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   const onDrop = useCallback(
     <T extends File>(acceptedFiles: T[], fileRejections: FileRejection[]) => {
       if (acceptedFiles.length > 0) {
-        setAllUploadedFiles(
+        setLocalFiles(
           produce((draft) => {
             draft.push(
               ...acceptedFiles.map(
@@ -165,7 +161,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
         }
       });
 
-      setAllUploadedFiles(
+      setLocalFiles(
         produce((draft) => {
           draft.push(...allFiles);
           return draft;
@@ -181,13 +177,14 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
       fileState: "Preparing",
       fileTempId: uuid(),
     }));
-    setAllUploadedFiles(
+    setLocalFiles(
       produce((draft) => {
         draft.push(...allFiles);
         return draft;
       })
     );
   }, []);
+
   const handleFileFolderDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     try {
       setFilesOnDragged(false);
@@ -235,14 +232,14 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
   };
   const contextVal: IUploadPageContextValue = useMemo(
     () => ({
-      allUploadedFiles,
-      setAllUploadedFiles,
+      localFiles,
+      setLocalFiles,
 
-      projectFiles,
+      serverFiles,
       projectDetail,
       refetchProjectFiles: projectFileQuery.refetch,
     }),
-    [allUploadedFiles, projectFiles, projectDetail]
+    [localFiles, serverFiles, projectDetail]
   );
 
   const createNewProject = async () => {
@@ -265,7 +262,7 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
 
     if (urlProjectId)
       setCookie(COOKIE_KEYS.ProjectId, urlProjectId, {
-        maxAge: 60 * 60 * 24 * 7,
+        maxAge: 60 * 60 * 24 * 7, //7 days
       });
     else if (!projectId) {
       if (storageProjectId) setProjectId(storageProjectId);
@@ -313,10 +310,10 @@ const useUploadPage = ({ urlProjectId }: { urlProjectId?: string }) => {
     processedPreviously,
     uploadFilesInFolder,
     contextVal,
-    allUploadedFiles,
+    localFiles,
     projectId,
     processableFiles,
-    projectFiles,
+    serverFiles,
     isGettingProjectDetails: projectDetailQuery.isLoading,
     floatingBtnVariants,
     hideAddBtn,

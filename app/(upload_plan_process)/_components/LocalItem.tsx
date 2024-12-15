@@ -100,7 +100,7 @@ const LocalItem = ({ item, projectId }: Props) => {
         }
         className="h-[5px]"
         indicatorClassName={`h-full w-full flex-1 ${
-          item.fileState === "Completed"
+          item.fileState === "Completed" // complete status
             ? "bg-[#11B221]"
             : item.fileState === "Failed"
             ? "bg-[#CA0730]"

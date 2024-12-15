@@ -16,11 +16,11 @@ type Props = {
 };
 
 const useLocalItem = ({ item, projectId }: Props) => {
-  const { setAllUploadedFiles } = useUploadPageContext();
+  const { setLocalFiles } = useUploadPageContext();
 
   // change status to processing when upload starts
   const onStartUpload = useCallback(() => {
-    setAllUploadedFiles(
+    setLocalFiles(
       produce((draft) => {
         const found = draft.find((f) => f.fileTempId === item.fileTempId);
         if (found) {
@@ -34,7 +34,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
 
   // change status to finalising when upload completes
   const onCompletePreparing = useCallback(() => {
-    setAllUploadedFiles(
+    setLocalFiles(
       produce((draft) => {
         const found = draft.find((f) => f.fileTempId === item.fileTempId);
         if (found) {
@@ -47,7 +47,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
 
   // change status to cancelled when upload is cancelled
   const onCancelUpload = useCallback(() => {
-    setAllUploadedFiles(
+    setLocalFiles(
       produce((draft) => {
         const found = draft.find((f) => f.fileTempId === item.fileTempId);
         if (found) {
@@ -60,7 +60,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
 
   // change status to completed when upload is successful
   const onSuccessUpload = useCallback(() => {
-    setAllUploadedFiles(
+    setLocalFiles(
       produce((draft) => {
         const found = draft.find((f) => f.fileTempId === item.fileTempId);
         if (found) {
@@ -80,7 +80,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
   // change status to failed when upload fails
   const onErrorUpload = useCallback(() => {
     // if (item.fileState === 'Processing')
-    setAllUploadedFiles(
+    setLocalFiles(
       produce((draft) => {
         const found = draft.find((f) => f.fileTempId === item.fileTempId);
         if (found) {
@@ -115,7 +115,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
         file: item.fileItem,
         awsUrl: url,
       });
-      setAllUploadedFiles(
+      setLocalFiles(
         produce((draft) => {
           const found = draft.find((f) => f.fileTempId === item.fileTempId);
           if (found) found.awsUrl = url;
@@ -151,7 +151,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
     )
       reset();
     else
-      setAllUploadedFiles(
+      setLocalFiles(
         produce((draft) => {
           draft = draft.filter((f) => f.fileTempId !== item.fileTempId);
 
@@ -164,7 +164,7 @@ const useLocalItem = ({ item, projectId }: Props) => {
 
   // retry file upload
   const handleRetry = () => {
-    setAllUploadedFiles(
+    setLocalFiles(
       produce((draft) => {
         const found = draft.find((f) => f.fileTempId === item.fileTempId);
         if (found) {

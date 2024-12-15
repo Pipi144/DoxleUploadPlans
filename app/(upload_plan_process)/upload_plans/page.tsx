@@ -24,12 +24,12 @@ export default function UploadPage() {
     pendingFolderUpload,
     setPendingFolderUpload,
     contextVal,
-    allUploadedFiles,
+    localFiles,
     uploadFilesInFolder,
     processedPreviously,
     projectId,
     processableFiles,
-    projectFiles,
+    serverFiles,
     floatingBtnVariants,
     hideAddBtn,
     fileContainerRef,
@@ -70,7 +70,7 @@ export default function UploadPage() {
                     : "pointer-events-none text-[rgba(255,255,255,0.55)]"
                 }`}
               >
-                {processedPreviously ? 'Reprocess' : 'Process'}
+                {processedPreviously ? "Reprocess" : "Process"}
               </Link>
             </div>
 
@@ -83,7 +83,7 @@ export default function UploadPage() {
               ref={fileContainerRef}
             >
               {/* condition when there are no files */}
-              {allUploadedFiles.length === 0 && projectFiles.length === 0 && (
+              {localFiles.length === 0 && serverFiles.length === 0 && (
                 <span className="absolute left-1/2 top-1/2 -translate-x-[50%] -translate-y-[50%]  text-black text-[14px] tablet:text-[16px] font-lexend font-medium ">
                   drag & drop or{" "}
                   <span
@@ -98,10 +98,10 @@ export default function UploadPage() {
               )}
 
               {/* these files are front end */}
-              {allUploadedFiles
+              {localFiles
                 .filter(
                   (item) =>
-                    !projectFiles.find(
+                    !serverFiles.find(
                       (pf) =>
                         pf.fileId === item.fileTempId &&
                         pf.status !== "Pending Upload"
@@ -111,7 +111,7 @@ export default function UploadPage() {
                   <LocalItem key={idx} item={item} projectId={projectId} />
                 ))}
               {/* project files coming from the server */}
-              {projectFiles
+              {serverFiles
                 .filter(
                   (f) =>
                     (f.status !== "Pending Upload" &&
@@ -122,7 +122,7 @@ export default function UploadPage() {
                   <ServerItem key={idx} item={item} />
                 ))}
             </div>
-            {(allUploadedFiles.length > 0 || projectFiles.length > 0) && (
+            {(localFiles.length > 0 || serverFiles.length > 0) && (
               <AnimatedButton
                 className="absolute bottom-[40px] right-[30px] z-[100] w-[45px] h-[45px] rounded-full bg-black hover:bg-white text-white hover:text-black  shadow-md shadow-zinc-600 text-[25px]"
                 {...getRootProps({})}

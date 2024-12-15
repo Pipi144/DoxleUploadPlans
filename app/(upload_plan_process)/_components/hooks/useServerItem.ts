@@ -9,7 +9,7 @@ import { useAWSMutatePlan } from "../../../../services/useUploadPlan";
 type Props = { item: ProjectFile };
 
 const useServerItem = ({ item }: Props) => {
-  const { projectDetail, setAllUploadedFiles } = useUploadPageContext();
+  const { projectDetail, setLocalFiles } = useUploadPageContext();
   const { deleteProjectFile } = useSetProjectFileQueryData();
   const { deleteFile } = useAWSMutatePlan({});
   const handleRemoveFile = () => {
@@ -20,7 +20,7 @@ const useServerItem = ({ item }: Props) => {
       deleteFile.mutate(item.fileId);
 
       // delete from local state if the file exists
-      setAllUploadedFiles(
+      setLocalFiles(
         produce((draft) => {
           const idx = draft.findIndex((f) => f.fileTempId === item.fileId);
           if (idx !== -1) draft.splice(idx, 1);

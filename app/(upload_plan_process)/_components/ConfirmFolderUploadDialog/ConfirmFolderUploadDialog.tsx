@@ -29,7 +29,7 @@ const ConfirmFolderUploadDialog = ({ folders, setFolder, uploadFn }: Props) => {
         if (!open) setFolder(null);
       }}
     >
-      <DialogContent>
+      <DialogContent className="bg-slate-500">
         <DialogHeader>
           <DialogTitle>Upload Folder?</DialogTitle>
         </DialogHeader>
